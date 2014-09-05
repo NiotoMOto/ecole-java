@@ -6,7 +6,10 @@
 
 package com.levinas.ecole.dao;
 
+import com.levinas.ecole.model.Enfant;
+import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.ResponsableEnfant;
+import java.util.List;
 
 /**
  *
@@ -14,6 +17,11 @@ import com.levinas.ecole.model.ResponsableEnfant;
  */
 public interface ResponsableEnfantDao {
     public void save(ResponsableEnfant responsableEnfant);
+    public List findAll();
     public void delete(ResponsableEnfant responsableEnfant);
+    public ResponsableEnfant findByIdresponsableEnfant (int idResponsableEnfant);
+    public List<ResponsableEnfant> findByIdenfant (Enfant enfant);
+    public List<ResponsableEnfant> findByIdresponsable (Responsable responsable);
+    
     
 }
