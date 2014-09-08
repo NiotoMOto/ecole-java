@@ -15,6 +15,8 @@
     <context:component-scan base-package="com.levinas.ecole.controller"/>
     <context:component-scan base-package="com.levinas.ecole.dao"/>
     <context:component-scan base-package="com.levinas.ecole.service"/>
+    <context:component-scan base-package="com.levinas.ecole.config"/>
+    
     <mvc:annotation-driven />
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" 

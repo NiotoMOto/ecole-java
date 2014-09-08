@@ -63,11 +63,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List findByUsername(String username) {
+    public User findByUsername(String username) {
          Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM User as user where user.username=:username");
         query.setParameter("username", username);
-        return query.list();
+        return (User)query.uniqueResult();
     }
 
 }

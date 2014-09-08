@@ -19,7 +19,7 @@ public interface UserService {
     public int saveOrUpdate(User user);
     public void delete(User user);
     public List findByMail(String mail);
-    public List findByUsername(String username);
+    public User findByUsername(String username);
     public User findByIdtypeResponsable(int idUser);
     
 }
