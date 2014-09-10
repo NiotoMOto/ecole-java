@@ -21,7 +21,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Configuration
-
 public class EnfantDaoImpl implements EnfantDao{
     
     @Autowired
