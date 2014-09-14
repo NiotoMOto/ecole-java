@@ -42,6 +42,12 @@ public class TypeResponsableCtrl {
         TypeResponsable typeResponsable = typeResponsableService.findByIdtypeResponsable(id);
         return typeResponsable;
     }
+    
+    @RequestMapping(method = RequestMethod.PUT)
+    public TypeResponsable update(@RequestBody TypeResponsable typeResponsable) {
+        typeResponsableService.saveOrUpdate(typeResponsable);
+        return typeResponsable;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public TypeResponsable create(@RequestBody TypeResponsable typeResponsable) {

@@ -44,6 +44,12 @@ public class ResponsableCtrl {
         Responsable responsable = responsableService.findByIdresponsable(id);
         return responsable;
     }
+    
+            @RequestMapping(method = RequestMethod.PUT)
+    public Responsable update(@RequestBody Responsable responsable) {
+        responsableService.saveOrUpdate(responsable);
+        return responsable;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public Responsable create(@RequestBody Responsable responsable) {
