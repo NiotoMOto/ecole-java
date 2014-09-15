@@ -33,7 +33,7 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ecole"/>
         <property name="user" value="root"/>
-        <property name="password" value=""/>
+        <property name="password" value="elg1024"/>
     </bean>
      
     <!-- Creation de la session factory -->
