@@ -7,6 +7,7 @@
 package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Enfant;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface EnfantDao {
     
     public List listAll();
+    public HashMap listAll(int page, int rpp);
     public Enfant FindById(int idEnfant);
     public void saveOrUpdate(Enfant enfant);
     public List findByNom(String nom);

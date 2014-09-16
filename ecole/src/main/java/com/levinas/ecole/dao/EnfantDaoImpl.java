@@ -7,6 +7,7 @@
 package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Enfant;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -26,12 +27,33 @@ public class EnfantDaoImpl implements EnfantDao{
     @Autowired
     private SessionFactory sessionFactory;
     
+    @Override
     public List listAll(){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("Enfant.findAll");
         return query.list();
     }
     
+    @Override
+     public HashMap listAll(int page, int rpp){
+        Integer iRpp = rpp ;
+        HashMap result = new HashMap();
+        
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.getNamedQuery("Enfant.findAll");
+        
+        double nbResult = query.list().size();
+        
+        query.setFirstResult((page - 1) * rpp);
+        query.setMaxResults(rpp);
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        return result ;
+    }
+    
+    @Override
     public Enfant FindById(int idEnfant){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("Enfant.findByIdEnfant");
