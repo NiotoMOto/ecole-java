@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface EnfantService {
     public List listAll();
-    public HashMap listAll(int page, int rpp);
+    public HashMap listAll(int page, int rpp, String search);
     public Enfant FindById(int idEnfant);
     public List findByNom(String nom);
     public int saveOrUpdate(Enfant enfant);

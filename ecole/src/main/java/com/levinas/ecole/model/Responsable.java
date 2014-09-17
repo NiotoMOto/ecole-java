@@ -38,6 +38,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Responsable.findByPrenom", query = "SELECT r FROM Responsable r WHERE r.prenom = :prenom"),
     @NamedQuery(name = "Responsable.findByAdresse", query = "SELECT r FROM Responsable r WHERE r.adresse = :adresse"),
     @NamedQuery(name = "Responsable.findByVille", query = "SELECT r FROM Responsable r WHERE r.ville = :ville"),
+    @NamedQuery(name = "Responsable.search", query = "SELECT r FROM Responsable r WHERE r.nom like :search OR r.prenom like :search OR r.adresse like search OR r.ville like :search OR r.codePostale like :search"),
     @NamedQuery(name = "Responsable.findByCodePostale", query = "SELECT r FROM Responsable r WHERE r.codePostale = :codePostale")})
 public class Responsable implements Serializable {
     private static final long serialVersionUID = 1L;

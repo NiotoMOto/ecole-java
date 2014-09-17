@@ -35,14 +35,14 @@ public class EnfantServiceImpl implements EnfantService{
     }
     
     @Override
-    public HashMap listAll(int page, int rpp){
-        return enfantDao.listAll(page, rpp);
+    public HashMap listAll(int page, int rpp, String search){
+        search = '%' + search + '%' ;
+        return enfantDao.listAll(page, rpp, search);
     }
     
     @Transactional
     @Override
     public int saveOrUpdate(Enfant enfant){
-        int id = -1 ;
         enfantDao.saveOrUpdate(enfant);
         return enfant.getIdEnfant() ;
     }

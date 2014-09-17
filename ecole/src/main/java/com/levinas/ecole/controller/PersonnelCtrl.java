@@ -8,6 +8,7 @@ package com.levinas.ecole.controller;
 import com.levinas.ecole.model.Personnel;
 import com.levinas.ecole.service.PersonnelService;
 import com.levinas.ecole.service.UserService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -40,6 +41,8 @@ public class PersonnelCtrl {
     public List<Personnel> getAll() {
         return personnelService.listAll();
     }
+    
+
     
    @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public Personnel findById(@PathVariable int id) {

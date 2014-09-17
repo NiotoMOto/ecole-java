@@ -8,6 +8,7 @@ package com.levinas.ecole.controller;
 
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.service.ResponsableService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -37,6 +39,18 @@ public class ResponsableCtrl {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Responsable> listAll() {
         return responsableService.findAll();
+    }
+    
+        @RequestMapping(value = "", method = RequestMethod.GET)
+    public HashMap getAll(
+            @RequestParam(value="page", required= false, defaultValue = "0") Integer page, 
+            @RequestParam(value = "rpp", required = false, defaultValue = "") Integer rpp,
+            @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+            if(page == null || rpp == null ||search == null){
+                return responsableService.listAll(1, 1, "");
+            }else{
+                return responsableService.listAll(page, rpp, search);
+            }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

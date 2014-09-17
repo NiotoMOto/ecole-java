@@ -35,13 +35,13 @@ public class EnfantDaoImpl implements EnfantDao{
     }
     
     @Override
-     public HashMap listAll(int page, int rpp){
+     public HashMap listAll(int page, int rpp, String search){
         Integer iRpp = rpp ;
         HashMap result = new HashMap();
         
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("Enfant.findAll");
-        
+        Query query = session.getNamedQuery("Enfant.search");
+        query.setParameter("search", search);
         double nbResult = query.list().size();
         
         query.setFirstResult((page - 1) * rpp);
@@ -50,6 +50,7 @@ public class EnfantDaoImpl implements EnfantDao{
         
         result.put("items", listItems);
         result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
         return result ;
     }
     

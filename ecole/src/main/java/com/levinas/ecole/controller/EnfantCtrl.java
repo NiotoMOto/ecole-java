@@ -41,12 +41,13 @@ public class EnfantCtrl {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public HashMap getAll(
             @RequestParam(value="page", required= false, defaultValue = "0") Integer page, 
-            @RequestParam(value = "rpp", required = false, defaultValue = "") Integer rpp) {
-        if(page == null || rpp == null){
-            return enfantService.listAll(1, 1);
-        }else{
-            return enfantService.listAll(page, rpp);
-        }
+            @RequestParam(value = "rpp", required = false, defaultValue = "") Integer rpp,
+            @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+            if(page == null || rpp == null ||search == null){
+                return enfantService.listAll(1, 1, "");
+            }else{
+                return enfantService.listAll(page, rpp, search);
+            }
         
     }
     

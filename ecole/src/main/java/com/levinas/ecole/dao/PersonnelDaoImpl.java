@@ -7,6 +7,7 @@
 package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Personnel;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -30,6 +31,26 @@ public class PersonnelDaoImpl implements PersonnelDao{
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("Personnel.findAll");
         return query.list();
+    }
+    
+    public HashMap listAll(int page, int rpp, String search){
+               Integer iRpp = rpp ;
+        HashMap result = new HashMap();
+        
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.getNamedQuery("Personnel.search");
+        query.setParameter("search", search);
+        double nbResult = query.list().size();
+        
+        query.setFirstResult((page - 1) * rpp);
+        query.setMaxResults(rpp);
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        
+        return result;
     }
     
     public Personnel FindById(int idpersonnel){

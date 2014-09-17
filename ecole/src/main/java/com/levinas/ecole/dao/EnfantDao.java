@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface EnfantDao {
     
     public List listAll();
-    public HashMap listAll(int page, int rpp);
+    public HashMap listAll(int page, int rpp, String search);
     public Enfant FindById(int idEnfant);
     public void saveOrUpdate(Enfant enfant);
     public List findByNom(String nom);

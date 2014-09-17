@@ -37,7 +37,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Enfant.findAll", query = "SELECT e FROM Enfant e"),
     @NamedQuery(name = "Enfant.findByIdEnfant", query = "SELECT e FROM Enfant e WHERE e.idEnfant = :idEnfant"),
     @NamedQuery(name = "Enfant.findByNom", query = "SELECT e FROM Enfant e WHERE e.nom = :nom"),
+    @NamedQuery(name = "Enfant.search", query = "SELECT e FROM Enfant e WHERE e.nom like :search OR e.prenom like :search"),
     @NamedQuery(name = "Enfant.findByPrenom", query = "SELECT e FROM Enfant e WHERE e.prenom = :prenom")})
+
 public class Enfant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
