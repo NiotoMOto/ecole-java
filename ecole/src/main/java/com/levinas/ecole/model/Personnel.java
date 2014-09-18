@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Personnel.findByCodepostal", query = "SELECT p FROM Personnel p WHERE p.codepostal = :codepostal"),
     @NamedQuery(name = "Personnel.findByTelephone", query = "SELECT p FROM Personnel p WHERE p.telephone = :telephone"),
     @NamedQuery(name = "Personnel.findByMobile", query = "SELECT p FROM Personnel p WHERE p.mobile = :mobile"),
-    @NamedQuery(name = "Personnel.search", query = "SELECT p FROM Personnel p WHERE p.mobile like :search OR p.fonction like :search OR p.nom like :search OR p.prenom like :search OR p.adresse like :search or p.ville like search or p.codepostal like :search"),
+    @NamedQuery(name = "Personnel.search", query = "SELECT p FROM Personnel p WHERE p.mobile like :search OR p.fonction like :search OR p.nom like :search OR p.prenom like :search OR p.adresse like :search OR p.ville like :search OR p.codepostal like :search"),
     @NamedQuery(name = "Personnel.findByFonction", query = "SELECT p FROM Personnel p WHERE p.fonction = :fonction")})
 public class Personnel implements Serializable {
     private static final long serialVersionUID = 1L;

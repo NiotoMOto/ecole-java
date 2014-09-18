@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,10 +39,16 @@ public class PersonnelCtrl {
     private UserService userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Personnel> getAll() {
-        return personnelService.listAll();
+    public HashMap getAll(
+            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+            @RequestParam(value = "rpp", required = false, defaultValue = "") Integer rpp,
+            @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+        if (page == null || rpp == null || search == null) {
+            return personnelService.listAll(1, 1, "");
+        } else {
+            return personnelService.listAll(page, rpp, search);
+        }
     }
-    
 
     
    @RequestMapping(value="/{id}", method = RequestMethod.GET)

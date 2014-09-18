@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.levinas.ecole.controller;
 
 import com.levinas.ecole.model.Responsable;
@@ -31,26 +30,21 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration
 @RequestMapping(value = "/responsable")
 public class ResponsableCtrl {
-    
-    
+
     @Autowired
     ResponsableService responsableService;
 
+
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Responsable> listAll() {
-        return responsableService.findAll();
-    }
-    
-        @RequestMapping(value = "", method = RequestMethod.GET)
     public HashMap getAll(
-            @RequestParam(value="page", required= false, defaultValue = "0") Integer page, 
+            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
             @RequestParam(value = "rpp", required = false, defaultValue = "") Integer rpp,
             @RequestParam(value = "search", required = false, defaultValue = "") String search) {
-            if(page == null || rpp == null ||search == null){
-                return responsableService.listAll(1, 1, "");
-            }else{
-                return responsableService.listAll(page, rpp, search);
-            }
+        if (page == null || rpp == null || search == null) {
+            return responsableService.listAll(1, 1, "");
+        } else {
+            return responsableService.listAll(page, rpp, search);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -58,8 +52,8 @@ public class ResponsableCtrl {
         Responsable responsable = responsableService.findByIdresponsable(id);
         return responsable;
     }
-    
-            @RequestMapping(method = RequestMethod.PUT)
+
+    @RequestMapping(method = RequestMethod.PUT)
     public Responsable update(@RequestBody Responsable responsable) {
         responsableService.saveOrUpdate(responsable);
         return responsable;
@@ -77,5 +71,5 @@ public class ResponsableCtrl {
         responsableService.delete(responsable);
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
-    
+
 }

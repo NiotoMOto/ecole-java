@@ -36,6 +36,7 @@ public class PersonnelServiceImpl implements PersonnelService{
     
     @Override
     public HashMap listAll(int page, int rpp, String search){
+        search = '%' + search + '%' ;
         return personnelDao.listAll(page, rpp, search);
     }
     

@@ -33,6 +33,7 @@ public class PersonnelDaoImpl implements PersonnelDao{
         return query.list();
     }
     
+    @Override
     public HashMap listAll(int page, int rpp, String search){
                Integer iRpp = rpp ;
         HashMap result = new HashMap();
