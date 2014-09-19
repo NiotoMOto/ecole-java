@@ -42,3 +42,7 @@ Icon
 *.war
 *.ear
 *.class
+
+*.war
+ecole/target/*
+*.class

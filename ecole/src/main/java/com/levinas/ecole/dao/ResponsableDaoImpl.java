@@ -34,7 +34,7 @@ public class ResponsableDaoImpl implements ResponsableDao{
         return query.list();
     }
     
-    public HashMap listAll(int page, int rpp, String search){
+    public HashMap listAll(int page, int rpp, String search, boolean all){
             Integer iRpp = rpp ;
         HashMap result = new HashMap();
         
@@ -43,8 +43,10 @@ public class ResponsableDaoImpl implements ResponsableDao{
         query.setParameter("search", search);
         double nbResult = query.list().size();
         
-        query.setFirstResult((page - 1) * rpp);
-        query.setMaxResults(rpp);
+        if(!all){
+            query.setFirstResult((page - 1) * rpp);
+            query.setMaxResults(rpp);
+        }
         List listItems = query.list();
         
         result.put("items", listItems);

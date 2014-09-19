@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface ResponsableService {
     public List findAll();
-    public HashMap listAll(int page, int rpp, String search);
+    public HashMap listAll(int page, int rpp, String search, boolean all);
     public Responsable findByIdresponsable(int idResponsable);
     public List findByNom(String nom);
     public List findByPrenom(String prenom);

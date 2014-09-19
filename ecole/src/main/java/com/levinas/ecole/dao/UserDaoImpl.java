@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 
     @Autowired
     SessionFactory sessionFactory;
-
+    
     @Override
     public List listAll() {
         Session session = sessionFactory.getCurrentSession();
@@ -33,6 +33,7 @@ public class UserDaoImpl implements UserDao {
         List list = query.list();
         return list ;
     }
+
 
     @Override
     public void saveOrUpdate(User user) {

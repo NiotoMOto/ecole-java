@@ -40,9 +40,9 @@ public class ResponsableServiceImpl implements ResponsableService {
     }
     
     @Override
-    public HashMap listAll(int page, int rpp, String search){
+    public HashMap listAll(int page, int rpp, String search, boolean all){
         search = '%' + search + '%' ;
-        return responsableDao.listAll(page, rpp, search);
+        return responsableDao.listAll(page, rpp, search, all);
     }
 
     @Override

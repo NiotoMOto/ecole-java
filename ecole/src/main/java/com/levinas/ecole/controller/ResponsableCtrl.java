@@ -39,11 +39,13 @@ public class ResponsableCtrl {
     public HashMap getAll(
             @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
             @RequestParam(value = "rpp", required = false, defaultValue = "") Integer rpp,
-            @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+            @RequestParam(value = "search", required = false, defaultValue = "") String search,
+            @RequestParam(value = "all", required = false, defaultValue = "false") boolean all
+             ) {
         if (page == null || rpp == null || search == null) {
-            return responsableService.listAll(1, 1, "");
+            return responsableService.listAll(1, 1, "", all);
         } else {
-            return responsableService.listAll(page, rpp, search);
+            return responsableService.listAll(page, rpp, search, all);
         }
     }
 
