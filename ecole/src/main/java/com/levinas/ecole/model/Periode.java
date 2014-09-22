@@ -7,8 +7,8 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,7 +52,7 @@ public class Periode implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "periodeIdperiode")
-    private List<Inscription> inscriptionList;
+    private Collection<Inscription> inscriptionCollection;
 
     public Periode() {
     }
@@ -87,12 +87,12 @@ public class Periode implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<Inscription> getInscriptionList() {
-        return inscriptionList;
+    public Collection<Inscription> getInscriptionCollection() {
+        return inscriptionCollection;
     }
 
-    public void setInscriptionList(List<Inscription> inscriptionList) {
-        this.inscriptionList = inscriptionList;
+    public void setInscriptionCollection(Collection<Inscription> inscriptionCollection) {
+        this.inscriptionCollection = inscriptionCollection;
     }
 
     @Override

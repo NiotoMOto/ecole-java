@@ -39,7 +39,7 @@ public class PersonnelDaoImpl implements PersonnelDao{
         HashMap result = new HashMap();
         
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("Personnel.search");
+        Query query = session.createQuery("SELECT p FROM Personnel p WHERE p.telMobile like :search OR p.fonction like :search OR p.telFixe like :search OR p.nom like :search OR p.prenom like :search OR p.adresse like :search OR p.ville like :search OR p.codepostal like :search");
         query.setParameter("search", search);
         double nbResult = query.list().size();
         

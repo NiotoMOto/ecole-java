@@ -7,7 +7,9 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.math.BigInteger;
+import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,11 +18,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -37,9 +42,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Enfant.findAll", query = "SELECT e FROM Enfant e"),
     @NamedQuery(name = "Enfant.findByIdEnfant", query = "SELECT e FROM Enfant e WHERE e.idEnfant = :idEnfant"),
     @NamedQuery(name = "Enfant.findByNom", query = "SELECT e FROM Enfant e WHERE e.nom = :nom"),
-    @NamedQuery(name = "Enfant.search", query = "SELECT e FROM Enfant e WHERE e.nom like :search OR e.prenom like :search"),
-    @NamedQuery(name = "Enfant.findByPrenom", query = "SELECT e FROM Enfant e WHERE e.prenom = :prenom")})
-
+    @NamedQuery(name = "Enfant.findByPrenom", query = "SELECT e FROM Enfant e WHERE e.prenom = :prenom"),
+    @NamedQuery(name = "Enfant.findByBirthday", query = "SELECT e FROM Enfant e WHERE e.birthday = :birthday"),
+    @NamedQuery(name = "Enfant.findByAdresse", query = "SELECT e FROM Enfant e WHERE e.adresse = :adresse"),
+    @NamedQuery(name = "Enfant.findByVille", query = "SELECT e FROM Enfant e WHERE e.ville = :ville"),
+    @NamedQuery(name = "Enfant.findByCodePostal", query = "SELECT e FROM Enfant e WHERE e.codePostal = :codePostal"),
+    @NamedQuery(name = "Enfant.findBySecuSociale", query = "SELECT e FROM Enfant e WHERE e.secuSociale = :secuSociale"),
+    @NamedQuery(name = "Enfant.findByAssuranceScolaire", query = "SELECT e FROM Enfant e WHERE e.assuranceScolaire = :assuranceScolaire")})
 public class Enfant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,15 +62,43 @@ public class Enfant implements Serializable {
     @Size(max = 45)
     @Column(name = "prenom")
     private String prenom;
+    @Column(name = "birthday")
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
+    @Size(max = 45)
+    @Column(name = "adresse")
+    private String adresse;
+    @Size(max = 45)
+    @Column(name = "ville")
+    private String ville;
+    @Size(max = 45)
+    @Column(name = "code_postal")
+    private String codePostal;
+    @Size(max = 65535)
+    @Column(name = "aptitudes")
+    private String aptitudes;
+    @Size(max = 65535)
+    @Column(name = "difficultes")
+    private String difficultes;
+    @Size(max = 65535)
+    @Column(name = "commentaires")
+    private String commentaires;
+    @Column(name = "secu_sociale")
+    private BigInteger secuSociale;
+    @Column(name = "assurance_scolaire")
+    private Boolean assuranceScolaire;
+    @Size(max = 65535)
+    @Column(name = "probleme_sante")
+    private String problemeSante;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idenfant")
-    private List<EnfantSession> enfantSessionList;
+    private Collection<EnfantSession> enfantSessionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idenfant")
-    private List<AnneeScolaireEnfant> anneeScolaireEnfantList;
+    private Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection;
     @JoinColumn(name = "user_id_user", referencedColumnName = "id_user")
     @ManyToOne(optional = false)
     private User userIdUser;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idenfant")
-    private List<ResponsableEnfant> responsableEnfantList;
+    private Collection<ResponsableEnfant> responsableEnfantCollection;
 
     public Enfant() {
     }
@@ -94,24 +131,104 @@ public class Enfant implements Serializable {
         this.prenom = prenom;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getAptitudes() {
+        return aptitudes;
+    }
+
+    public void setAptitudes(String aptitudes) {
+        this.aptitudes = aptitudes;
+    }
+
+    public String getDifficultes() {
+        return difficultes;
+    }
+
+    public void setDifficultes(String difficultes) {
+        this.difficultes = difficultes;
+    }
+
+    public String getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(String commentaires) {
+        this.commentaires = commentaires;
+    }
+
+    public BigInteger getSecuSociale() {
+        return secuSociale;
+    }
+
+    public void setSecuSociale(BigInteger secuSociale) {
+        this.secuSociale = secuSociale;
+    }
+
+    public Boolean getAssuranceScolaire() {
+        return assuranceScolaire;
+    }
+
+    public void setAssuranceScolaire(Boolean assuranceScolaire) {
+        this.assuranceScolaire = assuranceScolaire;
+    }
+
+    public String getProblemeSante() {
+        return problemeSante;
+    }
+
+    public void setProblemeSante(String problemeSante) {
+        this.problemeSante = problemeSante;
+    }
+
     @XmlTransient
     @JsonIgnore
-    public List<EnfantSession> getEnfantSessionList() {
-        return enfantSessionList;
+    public Collection<EnfantSession> getEnfantSessionCollection() {
+        return enfantSessionCollection;
     }
 
-    public void setEnfantSessionList(List<EnfantSession> enfantSessionList) {
-        this.enfantSessionList = enfantSessionList;
+    public void setEnfantSessionCollection(Collection<EnfantSession> enfantSessionCollection) {
+        this.enfantSessionCollection = enfantSessionCollection;
     }
 
     @XmlTransient
     @JsonIgnore
-    public List<AnneeScolaireEnfant> getAnneeScolaireEnfantList() {
-        return anneeScolaireEnfantList;
+    public Collection<AnneeScolaireEnfant> getAnneeScolaireEnfantCollection() {
+        return anneeScolaireEnfantCollection;
     }
 
-    public void setAnneeScolaireEnfantList(List<AnneeScolaireEnfant> anneeScolaireEnfantList) {
-        this.anneeScolaireEnfantList = anneeScolaireEnfantList;
+    public void setAnneeScolaireEnfantCollection(Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection) {
+        this.anneeScolaireEnfantCollection = anneeScolaireEnfantCollection;
     }
 
     public User getUserIdUser() {
@@ -124,12 +241,12 @@ public class Enfant implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<ResponsableEnfant> getResponsableEnfantList() {
-        return responsableEnfantList;
+    public Collection<ResponsableEnfant> getResponsableEnfantCollection() {
+        return responsableEnfantCollection;
     }
 
-    public void setResponsableEnfantList(List<ResponsableEnfant> responsableEnfantList) {
-        this.responsableEnfantList = responsableEnfantList;
+    public void setResponsableEnfantCollection(Collection<ResponsableEnfant> responsableEnfantCollection) {
+        this.responsableEnfantCollection = responsableEnfantCollection;
     }
 
     @Override

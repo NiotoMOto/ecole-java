@@ -7,7 +7,7 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,7 +46,7 @@ public class TypeResponsable implements Serializable {
     @Column(name = "libelle")
     private String libelle;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtypeResponsable")
-    private List<ResponsableEnfant> responsableEnfantList;
+    private Collection<ResponsableEnfant> responsableEnfantCollection;
 
     public TypeResponsable() {
     }
@@ -73,12 +73,12 @@ public class TypeResponsable implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<ResponsableEnfant> getResponsableEnfantList() {
-        return responsableEnfantList;
+    public Collection<ResponsableEnfant> getResponsableEnfantCollection() {
+        return responsableEnfantCollection;
     }
 
-    public void setResponsableEnfantList(List<ResponsableEnfant> responsableEnfantList) {
-        this.responsableEnfantList = responsableEnfantList;
+    public void setResponsableEnfantCollection(Collection<ResponsableEnfant> responsableEnfantCollection) {
+        this.responsableEnfantCollection = responsableEnfantCollection;
     }
 
     @Override

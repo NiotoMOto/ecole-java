@@ -34,10 +34,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Personnel.findByAdresse", query = "SELECT p FROM Personnel p WHERE p.adresse = :adresse"),
     @NamedQuery(name = "Personnel.findByVille", query = "SELECT p FROM Personnel p WHERE p.ville = :ville"),
     @NamedQuery(name = "Personnel.findByCodepostal", query = "SELECT p FROM Personnel p WHERE p.codepostal = :codepostal"),
-    @NamedQuery(name = "Personnel.findByTelephone", query = "SELECT p FROM Personnel p WHERE p.telephone = :telephone"),
-    @NamedQuery(name = "Personnel.findByMobile", query = "SELECT p FROM Personnel p WHERE p.mobile = :mobile"),
-    @NamedQuery(name = "Personnel.search", query = "SELECT p FROM Personnel p WHERE p.mobile like :search OR p.fonction like :search OR p.nom like :search OR p.prenom like :search OR p.adresse like :search OR p.ville like :search OR p.codepostal like :search"),
-    @NamedQuery(name = "Personnel.findByFonction", query = "SELECT p FROM Personnel p WHERE p.fonction = :fonction")})
+    @NamedQuery(name = "Personnel.findByTelFixe", query = "SELECT p FROM Personnel p WHERE p.telFixe = :telFixe"),
+    @NamedQuery(name = "Personnel.findByTelMobile", query = "SELECT p FROM Personnel p WHERE p.telMobile = :telMobile"),
+    @NamedQuery(name = "Personnel.findByFonction", query = "SELECT p FROM Personnel p WHERE p.fonction = :fonction"),
+    @NamedQuery(name = "Personnel.findByEmail", query = "SELECT p FROM Personnel p WHERE p.email = :email")})
 public class Personnel implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -60,15 +60,19 @@ public class Personnel implements Serializable {
     @Size(max = 45)
     @Column(name = "codepostal")
     private String codepostal;
-    @Size(max = 45)
-    @Column(name = "telephone")
-    private String telephone;
-    @Size(max = 45)
-    @Column(name = "mobile")
-    private String mobile;
+    @Size(max = 15)
+    @Column(name = "tel_fixe")
+    private String telFixe;
+    @Size(max = 15)
+    @Column(name = "tel_mobile")
+    private String telMobile;
     @Size(max = 45)
     @Column(name = "fonction")
     private String fonction;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 45)
+    @Column(name = "email")
+    private String email;
 
     public Personnel() {
     }
@@ -125,20 +129,20 @@ public class Personnel implements Serializable {
         this.codepostal = codepostal;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getTelFixe() {
+        return telFixe;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setTelFixe(String telFixe) {
+        this.telFixe = telFixe;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getTelMobile() {
+        return telMobile;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setTelMobile(String telMobile) {
+        this.telMobile = telMobile;
     }
 
     public String getFonction() {
@@ -147,6 +151,14 @@ public class Personnel implements Serializable {
 
     public void setFonction(String fonction) {
         this.fonction = fonction;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

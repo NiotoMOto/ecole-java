@@ -7,7 +7,7 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,8 +38,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Responsable.findByPrenom", query = "SELECT r FROM Responsable r WHERE r.prenom = :prenom"),
     @NamedQuery(name = "Responsable.findByAdresse", query = "SELECT r FROM Responsable r WHERE r.adresse = :adresse"),
     @NamedQuery(name = "Responsable.findByVille", query = "SELECT r FROM Responsable r WHERE r.ville = :ville"),
-    @NamedQuery(name = "Responsable.search", query = "SELECT r FROM Responsable r WHERE r.nom like :search OR r.prenom like :search OR r.adresse like :search OR r.ville like :search OR r.codePostale like :search"),
-    @NamedQuery(name = "Responsable.findByCodePostale", query = "SELECT r FROM Responsable r WHERE r.codePostale = :codePostale")})
+    @NamedQuery(name = "Responsable.findByCodePostale", query = "SELECT r FROM Responsable r WHERE r.codePostale = :codePostale"),
+    @NamedQuery(name = "Responsable.findByProfession", query = "SELECT r FROM Responsable r WHERE r.profession = :profession"),
+    @NamedQuery(name = "Responsable.findByTelFixe", query = "SELECT r FROM Responsable r WHERE r.telFixe = :telFixe"),
+    @NamedQuery(name = "Responsable.findByTelPort", query = "SELECT r FROM Responsable r WHERE r.telPort = :telPort"),
+    @NamedQuery(name = "Responsable.findByEmail", query = "SELECT r FROM Responsable r WHERE r.email = :email")})
 public class Responsable implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -62,8 +65,21 @@ public class Responsable implements Serializable {
     @Size(max = 45)
     @Column(name = "code_postale")
     private String codePostale;
+    @Size(max = 45)
+    @Column(name = "profession")
+    private String profession;
+    @Size(max = 15)
+    @Column(name = "tel_fixe")
+    private String telFixe;
+    @Size(max = 15)
+    @Column(name = "tel_port")
+    private String telPort;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 45)
+    @Column(name = "email")
+    private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idresponsable")
-    private List<ResponsableEnfant> responsableEnfantList;
+    private Collection<ResponsableEnfant> responsableEnfantCollection;
 
     public Responsable() {
     }
@@ -120,14 +136,46 @@ public class Responsable implements Serializable {
         this.codePostale = codePostale;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<ResponsableEnfant> getResponsableEnfantList() {
-        return responsableEnfantList;
+    public String getProfession() {
+        return profession;
     }
 
-    public void setResponsableEnfantList(List<ResponsableEnfant> responsableEnfantList) {
-        this.responsableEnfantList = responsableEnfantList;
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public String getTelFixe() {
+        return telFixe;
+    }
+
+    public void setTelFixe(String telFixe) {
+        this.telFixe = telFixe;
+    }
+
+    public String getTelPort() {
+        return telPort;
+    }
+
+    public void setTelPort(String telPort) {
+        this.telPort = telPort;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<ResponsableEnfant> getResponsableEnfantCollection() {
+        return responsableEnfantCollection;
+    }
+
+    public void setResponsableEnfantCollection(Collection<ResponsableEnfant> responsableEnfantCollection) {
+        this.responsableEnfantCollection = responsableEnfantCollection;
     }
 
     @Override

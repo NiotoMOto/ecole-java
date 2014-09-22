@@ -39,7 +39,7 @@ public class ResponsableDaoImpl implements ResponsableDao{
         HashMap result = new HashMap();
         
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("Responsable.search");
+        Query query = session.createQuery("SELECT r FROM Responsable r WHERE r.nom like :search OR r.prenom like :search OR r.adresse like :search OR r.ville like :search OR r.codePostale like :search");
         query.setParameter("search", search);
         double nbResult = query.list().size();
         

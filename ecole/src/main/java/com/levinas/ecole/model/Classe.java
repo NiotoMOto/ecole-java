@@ -7,7 +7,7 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,7 +41,7 @@ public class Classe implements Serializable {
     @Column(name = "idClasse")
     private Integer idClasse;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClasse")
-    private List<AnneeScolaireEnfant> anneeScolaireEnfantList;
+    private Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection;
 
     public Classe() {
     }
@@ -60,12 +60,12 @@ public class Classe implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<AnneeScolaireEnfant> getAnneeScolaireEnfantList() {
-        return anneeScolaireEnfantList;
+    public Collection<AnneeScolaireEnfant> getAnneeScolaireEnfantCollection() {
+        return anneeScolaireEnfantCollection;
     }
 
-    public void setAnneeScolaireEnfantList(List<AnneeScolaireEnfant> anneeScolaireEnfantList) {
-        this.anneeScolaireEnfantList = anneeScolaireEnfantList;
+    public void setAnneeScolaireEnfantCollection(Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection) {
+        this.anneeScolaireEnfantCollection = anneeScolaireEnfantCollection;
     }
 
     @Override

@@ -7,7 +7,7 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,7 +41,7 @@ public class Activite implements Serializable {
     @Column(name = "idactivite")
     private Integer idactivite;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idactivite")
-    private List<Inscription> inscriptionList;
+    private Collection<Inscription> inscriptionCollection;
 
     public Activite() {
     }
@@ -60,12 +60,12 @@ public class Activite implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<Inscription> getInscriptionList() {
-        return inscriptionList;
+    public Collection<Inscription> getInscriptionCollection() {
+        return inscriptionCollection;
     }
 
-    public void setInscriptionList(List<Inscription> inscriptionList) {
-        this.inscriptionList = inscriptionList;
+    public void setInscriptionCollection(Collection<Inscription> inscriptionCollection) {
+        this.inscriptionCollection = inscriptionCollection;
     }
 
     @Override

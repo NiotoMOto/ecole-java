@@ -40,7 +40,7 @@ public class EnfantDaoImpl implements EnfantDao{
         HashMap result = new HashMap();
         
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("Enfant.search");
+        Query query = session.createQuery("SELECT e FROM Enfant e WHERE e.nom like :search OR e.prenom like :search");
         query.setParameter("search", search);
         double nbResult = query.list().size();
         
