@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.levinas.ecole.controller;
 
+import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.ResponsableEnfant;
+import com.levinas.ecole.service.EnfantService;
 import com.levinas.ecole.service.ResponsableEnfantService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -29,12 +31,21 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration
 @RequestMapping(value = "/responsableEnfant")
 public class ResponsableEnfantCtrl {
-    
+
     @Autowired
     ResponsableEnfantService responsableEnfantService;
 
+    @Autowired
+    EnfantService enfantService;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<ResponsableEnfant> listAll() {
+    public List<ResponsableEnfant> listAll(
+            @RequestParam(value = "byEnfant", required = false) Integer idEnfant
+    ) {
+        if (idEnfant != null) {
+            Enfant enfant = enfantService.FindById(idEnfant);
+            return responsableEnfantService.findByIdenfant(enfant);
+        }
         return responsableEnfantService.findAll();
     }
 
@@ -56,6 +67,5 @@ public class ResponsableEnfantCtrl {
         responsableEnfantService.delete(responsableEnfant);
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
-    
-    
+
 }

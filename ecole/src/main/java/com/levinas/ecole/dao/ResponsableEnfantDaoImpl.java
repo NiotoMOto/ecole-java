@@ -49,7 +49,8 @@ public class ResponsableEnfantDaoImpl implements ResponsableEnfantDao {
     @Override
     public List<ResponsableEnfant> findByIdenfant(Enfant enfant) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("ResponsableEnfant.findByIdenfant");
+        Query query = session.createQuery("SELECT r FROM ResponsableEnfant r WHERE r.idenfant = :idenfant");
+        query.setParameter("idenfant", enfant);
         return query.list();
     }
 
@@ -64,6 +65,7 @@ public class ResponsableEnfantDaoImpl implements ResponsableEnfantDao {
     public ResponsableEnfant findByIdresponsableEnfant(int idResponsableEnfant) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("ResponsableEnfant.findByIdresponsableEnfant");
+        query.setParameter("idresponsableEnfant", idResponsableEnfant);
         return (ResponsableEnfant)query.uniqueResult();
     }
 
