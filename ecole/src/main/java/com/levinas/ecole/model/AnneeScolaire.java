@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -34,6 +35,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "AnneeScolaire.findAll", query = "SELECT a FROM AnneeScolaire a"),
     @NamedQuery(name = "AnneeScolaire.findByIdanneeScolaire", query = "SELECT a FROM AnneeScolaire a WHERE a.idanneeScolaire = :idanneeScolaire")})
 public class AnneeScolaire implements Serializable {
+    @Size(max = 45)
+    @Column(name = "libelle")
+    private String libelle;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,6 +95,14 @@ public class AnneeScolaire implements Serializable {
     @Override
     public String toString() {
         return "com.levinas.ecole.model.AnneeScolaire[ idanneeScolaire=" + idanneeScolaire + " ]";
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
     
 }

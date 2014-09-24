@@ -3,21 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.levinas.ecole.service;
 
-import com.levinas.ecole.model.TypeResponsable;
+package com.levinas.ecole.dao;
+
+import com.levinas.ecole.model.Classe;
 import java.util.List;
 
 /**
  *
  * @author Administrateur
  */
-public interface TypeResponsableService {
+public interface ClasseDao {
 
     public List findAll();
-    public TypeResponsable findByIdtypeResponsable(int idTypeResponsable);
-    public List findByLibelle(String libelle);
-    public void saveOrUpdate(TypeResponsable typeResponsable);
-    public void delete(TypeResponsable typeResponsable);
 
+    public Classe findByIdclasse(int idClasse);
+
+    public List findByLibelle(String libelle);
+
+    public void saveOrUpdate(Classe classe);
+    
+    public void delete(Classe classe);
 }

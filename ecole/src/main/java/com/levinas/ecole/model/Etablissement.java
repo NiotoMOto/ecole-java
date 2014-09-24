@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -34,6 +35,21 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Etablissement.findAll", query = "SELECT e FROM Etablissement e"),
     @NamedQuery(name = "Etablissement.findByIdetablissement", query = "SELECT e FROM Etablissement e WHERE e.idetablissement = :idetablissement")})
 public class Etablissement implements Serializable {
+    @Size(max = 45)
+    @Column(name = "adresse")
+    private String adresse;
+    @Size(max = 45)
+    @Column(name = "code_postal")
+    private String codePostal;
+    @Size(max = 45)
+    @Column(name = "ville")
+    private String ville;
+    @Size(max = 45)
+    @Column(name = "telephone")
+    private String telephone;
+    @Size(max = 45)
+    @Column(name = "libelle")
+    private String libelle;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,6 +107,46 @@ public class Etablissement implements Serializable {
     @Override
     public String toString() {
         return "com.levinas.ecole.model.Etablissement[ idetablissement=" + idetablissement + " ]";
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
     
 }
