@@ -26,15 +26,29 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Administrateur
+ * @author Antone
  */
 @Entity
 @Table(name = "etablissement")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Etablissement.findAll", query = "SELECT e FROM Etablissement e"),
-    @NamedQuery(name = "Etablissement.findByIdetablissement", query = "SELECT e FROM Etablissement e WHERE e.idetablissement = :idetablissement")})
+    @NamedQuery(name = "Etablissement.findByIdetablissement", query = "SELECT e FROM Etablissement e WHERE e.idetablissement = :idetablissement"),
+    @NamedQuery(name = "Etablissement.findByLibelle", query = "SELECT e FROM Etablissement e WHERE e.libelle = :libelle"),
+    @NamedQuery(name = "Etablissement.findByAdresse", query = "SELECT e FROM Etablissement e WHERE e.adresse = :adresse"),
+    @NamedQuery(name = "Etablissement.findByCodePostal", query = "SELECT e FROM Etablissement e WHERE e.codePostal = :codePostal"),
+    @NamedQuery(name = "Etablissement.findByVille", query = "SELECT e FROM Etablissement e WHERE e.ville = :ville"),
+    @NamedQuery(name = "Etablissement.findByTelephone", query = "SELECT e FROM Etablissement e WHERE e.telephone = :telephone")})
 public class Etablissement implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idetablissement")
+    private Integer idetablissement;
+    @Size(max = 45)
+    @Column(name = "libelle")
+    private String libelle;
     @Size(max = 45)
     @Column(name = "adresse")
     private String adresse;
@@ -47,15 +61,6 @@ public class Etablissement implements Serializable {
     @Size(max = 45)
     @Column(name = "telephone")
     private String telephone;
-    @Size(max = 45)
-    @Column(name = "libelle")
-    private String libelle;
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idetablissement")
-    private Integer idetablissement;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idetablissement")
     private Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection;
 
@@ -72,41 +77,6 @@ public class Etablissement implements Serializable {
 
     public void setIdetablissement(Integer idetablissement) {
         this.idetablissement = idetablissement;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<AnneeScolaireEnfant> getAnneeScolaireEnfantCollection() {
-        return anneeScolaireEnfantCollection;
-    }
-
-    public void setAnneeScolaireEnfantCollection(Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection) {
-        this.anneeScolaireEnfantCollection = anneeScolaireEnfantCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idetablissement != null ? idetablissement.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Etablissement)) {
-            return false;
-        }
-        Etablissement other = (Etablissement) object;
-        if ((this.idetablissement == null && other.idetablissement != null) || (this.idetablissement != null && !this.idetablissement.equals(other.idetablissement))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.levinas.ecole.model.Etablissement[ idetablissement=" + idetablissement + " ]";
     }
 
     public String getLibelle() {
@@ -147,6 +117,41 @@ public class Etablissement implements Serializable {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<AnneeScolaireEnfant> getAnneeScolaireEnfantCollection() {
+        return anneeScolaireEnfantCollection;
+    }
+
+    public void setAnneeScolaireEnfantCollection(Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection) {
+        this.anneeScolaireEnfantCollection = anneeScolaireEnfantCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idetablissement != null ? idetablissement.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Etablissement)) {
+            return false;
+        }
+        Etablissement other = (Etablissement) object;
+        if ((this.idetablissement == null && other.idetablissement != null) || (this.idetablissement != null && !this.idetablissement.equals(other.idetablissement))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.levinas.ecole.model.Etablissement[ idetablissement=" + idetablissement + " ]";
     }
     
 }

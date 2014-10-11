@@ -26,7 +26,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Administrateur
+ * @author Antone
  */
 @Entity
 @Table(name = "responsable")

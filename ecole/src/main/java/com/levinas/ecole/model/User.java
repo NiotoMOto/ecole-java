@@ -16,8 +16,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,7 +30,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Administrateur
+ * @author Antone
  */
 @Entity
 @Table(name = "user")
@@ -67,10 +65,7 @@ public class User implements Serializable {
     private Date createTime;
     @Column(name = "enabled")
     private Boolean enabled;
-    @JoinTable(name = "user_role", joinColumns = {
-        @JoinColumn(name = "user_id_user", referencedColumnName = "id_user")}, inverseJoinColumns = {
-        @JoinColumn(name = "role_idrole", referencedColumnName = "idrole")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "userCollection")
     private Collection<Role> roleCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUser")
     private Collection<Enfant> enfantCollection;

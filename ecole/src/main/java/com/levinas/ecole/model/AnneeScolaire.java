@@ -26,24 +26,25 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Administrateur
+ * @author Antone
  */
 @Entity
 @Table(name = "annee_scolaire")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "AnneeScolaire.findAll", query = "SELECT a FROM AnneeScolaire a"),
-    @NamedQuery(name = "AnneeScolaire.findByIdanneeScolaire", query = "SELECT a FROM AnneeScolaire a WHERE a.idanneeScolaire = :idanneeScolaire")})
+    @NamedQuery(name = "AnneeScolaire.findByIdanneeScolaire", query = "SELECT a FROM AnneeScolaire a WHERE a.idanneeScolaire = :idanneeScolaire"),
+    @NamedQuery(name = "AnneeScolaire.findByLibelle", query = "SELECT a FROM AnneeScolaire a WHERE a.libelle = :libelle")})
 public class AnneeScolaire implements Serializable {
-    @Size(max = 45)
-    @Column(name = "libelle")
-    private String libelle;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idannee_scolaire")
     private Integer idanneeScolaire;
+    @Size(max = 45)
+    @Column(name = "libelle")
+    private String libelle;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idanneeScolaire")
     private Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection;
 
@@ -60,6 +61,14 @@ public class AnneeScolaire implements Serializable {
 
     public void setIdanneeScolaire(Integer idanneeScolaire) {
         this.idanneeScolaire = idanneeScolaire;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     @XmlTransient
@@ -95,14 +104,6 @@ public class AnneeScolaire implements Serializable {
     @Override
     public String toString() {
         return "com.levinas.ecole.model.AnneeScolaire[ idanneeScolaire=" + idanneeScolaire + " ]";
-    }
-
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
     }
     
 }

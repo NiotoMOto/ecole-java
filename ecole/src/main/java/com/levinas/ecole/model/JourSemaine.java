@@ -7,7 +7,9 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,22 +17,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
  * @author Antone
  */
 @Entity
-@Table(name = "jour")
+@Table(name = "jour_semaine")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Jour.findAll", query = "SELECT j FROM Jour j"),
-    @NamedQuery(name = "Jour.findByIdjour", query = "SELECT j FROM Jour j WHERE j.idjour = :idjour"),
-    @NamedQuery(name = "Jour.findByJour", query = "SELECT j FROM Jour j WHERE j.jour = :jour")})
-public class Jour implements Serializable {
+    @NamedQuery(name = "JourSemaine.findAll", query = "SELECT j FROM JourSemaine j"),
+    @NamedQuery(name = "JourSemaine.findByIdjour", query = "SELECT j FROM JourSemaine j WHERE j.idjour = :idjour"),
+    @NamedQuery(name = "JourSemaine.findByJour", query = "SELECT j FROM JourSemaine j WHERE j.jour = :jour")})
+public class JourSemaine implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +45,13 @@ public class Jour implements Serializable {
     @Size(max = 45)
     @Column(name = "jour")
     private String jour;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jourSemaineIdjour")
+    private Collection<JourSemaineInscritpion> jourSemaineInscritpionCollection;
 
-    public Jour() {
+    public JourSemaine() {
     }
 
-    public Jour(Integer idjour) {
+    public JourSemaine(Integer idjour) {
         this.idjour = idjour;
     }
 
@@ -64,6 +71,16 @@ public class Jour implements Serializable {
         this.jour = jour;
     }
 
+    @XmlTransient
+    @JsonIgnore
+    public Collection<JourSemaineInscritpion> getJourSemaineInscritpionCollection() {
+        return jourSemaineInscritpionCollection;
+    }
+
+    public void setJourSemaineInscritpionCollection(Collection<JourSemaineInscritpion> jourSemaineInscritpionCollection) {
+        this.jourSemaineInscritpionCollection = jourSemaineInscritpionCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -74,10 +91,10 @@ public class Jour implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Jour)) {
+        if (!(object instanceof JourSemaine)) {
             return false;
         }
-        Jour other = (Jour) object;
+        JourSemaine other = (JourSemaine) object;
         if ((this.idjour == null && other.idjour != null) || (this.idjour != null && !this.idjour.equals(other.idjour))) {
             return false;
         }
@@ -86,7 +103,7 @@ public class Jour implements Serializable {
 
     @Override
     public String toString() {
-        return "com.levinas.ecole.model.Jour[ idjour=" + idjour + " ]";
+        return "com.levinas.ecole.model.JourSemaine[ idjour=" + idjour + " ]";
     }
     
 }

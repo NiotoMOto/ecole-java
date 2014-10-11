@@ -23,6 +23,8 @@
     <class>com.levinas.ecole.model.Classe</class>
     <class>com.levinas.ecole.model.Role</class>
     <class>com.levinas.ecole.model.Paiement</class>
+    <class>com.levinas.ecole.model.JourSemaineInscritpion</class>
+    <class>com.levinas.ecole.model.JourSemaine</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ecole?zeroDateTimeBehavior=convertToNull"/>

@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Administrateur
+ * @author Antone
  */
 @Entity
 @Table(name = "role")
@@ -44,7 +46,10 @@ public class Role implements Serializable {
     @Size(max = 45)
     @Column(name = "libelle")
     private String libelle;
-    @ManyToMany(mappedBy = "roleCollection")
+    @JoinTable(name = "user_role", joinColumns = {
+        @JoinColumn(name = "role_idrole", referencedColumnName = "idrole")}, inverseJoinColumns = {
+        @JoinColumn(name = "user_id_user", referencedColumnName = "id_user")})
+    @ManyToMany
     private Collection<User> userCollection;
 
     public Role() {

@@ -27,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Administrateur
+ * @author Antone
  */
 @Entity
 @Table(name = "inscription")
@@ -48,9 +48,8 @@ public class Inscription implements Serializable {
     private Float prix;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idinscription")
     private Collection<EnfantSession> enfantSessionCollection;
-    @JoinColumn(name = "periode_jours_idperiode_jours", referencedColumnName = "idperiode_jours")
-    @ManyToOne(optional = false)
-    private PeriodeJours periodeJoursIdperiodeJours;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inscriptionIdinscription")
+    private Collection<JourSemaineInscritpion> jourSemaineInscritpionCollection;
     @JoinColumn(name = "periode_idperiode", referencedColumnName = "idperiode")
     @ManyToOne(optional = false)
     private Periode periodeIdperiode;
@@ -91,12 +90,14 @@ public class Inscription implements Serializable {
         this.enfantSessionCollection = enfantSessionCollection;
     }
 
-    public PeriodeJours getPeriodeJoursIdperiodeJours() {
-        return periodeJoursIdperiodeJours;
+    @XmlTransient
+    @JsonIgnore
+    public Collection<JourSemaineInscritpion> getJourSemaineInscritpionCollection() {
+        return jourSemaineInscritpionCollection;
     }
 
-    public void setPeriodeJoursIdperiodeJours(PeriodeJours periodeJoursIdperiodeJours) {
-        this.periodeJoursIdperiodeJours = periodeJoursIdperiodeJours;
+    public void setJourSemaineInscritpionCollection(Collection<JourSemaineInscritpion> jourSemaineInscritpionCollection) {
+        this.jourSemaineInscritpionCollection = jourSemaineInscritpionCollection;
     }
 
     public Periode getPeriodeIdperiode() {

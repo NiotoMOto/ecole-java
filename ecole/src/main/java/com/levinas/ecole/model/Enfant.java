@@ -33,7 +33,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author Administrateur
+ * @author Antone
  */
 @Entity
 @Table(name = "enfant")
@@ -74,19 +74,23 @@ public class Enfant implements Serializable {
     @Size(max = 45)
     @Column(name = "code_postal")
     private String codePostal;
-    @Size(max = 65535)
+    @Lob
+    @Size(max = 16777215)
     @Column(name = "aptitudes")
     private String aptitudes;
-    @Size(max = 65535)
+    @Lob
+    @Size(max = 16777215)
     @Column(name = "difficultes")
     private String difficultes;
-    @Size(max = 65535)
+    @Lob
+    @Size(max = 16777215)
     @Column(name = "commentaires")
     private String commentaires;
     @Column(name = "secu_sociale")
     private BigInteger secuSociale;
     @Column(name = "assurance_scolaire")
     private Boolean assuranceScolaire;
+    @Lob
     @Size(max = 65535)
     @Column(name = "probleme_sante")
     private String problemeSante;
