@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -34,6 +35,12 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Activite.findAll", query = "SELECT a FROM Activite a"),
     @NamedQuery(name = "Activite.findByIdactivite", query = "SELECT a FROM Activite a WHERE a.idactivite = :idactivite")})
 public class Activite implements Serializable {
+    @Size(max = 45)
+    @Column(name = "libelle")
+    private String libelle;
+    @Size(max = 45)
+    @Column(name = "description")
+    private String description;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,6 +98,22 @@ public class Activite implements Serializable {
     @Override
     public String toString() {
         return "com.levinas.ecole.model.Activite[ idactivite=" + idactivite + " ]";
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }
