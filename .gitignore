@@ -33,7 +33,23 @@ Icon
 
 # Files that might appear on external disk
 .Spotlight-V100
+<<<<<<< HEAD
 .Trashes
 
 *.war
 *.war
+=======
+.Trashes
+
+
+#JAVA
+*target*
+*.jar
+*.war
+*.ear
+*.class
+
+*.war
+ecole/target/*
+*.class
+>>>>>>> 2f169e476c6a4645dca926aeab20e1ba9a2052c0
