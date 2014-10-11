@@ -74,15 +74,15 @@ public class Enfant implements Serializable {
     @Size(max = 45)
     @Column(name = "code_postal")
     private String codePostal;
-    @Lob
+    
     @Size(max = 16777215)
     @Column(name = "aptitudes")
     private String aptitudes;
-    @Lob
+    
     @Size(max = 16777215)
     @Column(name = "difficultes")
     private String difficultes;
-    @Lob
+    
     @Size(max = 16777215)
     @Column(name = "commentaires")
     private String commentaires;
@@ -90,7 +90,7 @@ public class Enfant implements Serializable {
     private BigInteger secuSociale;
     @Column(name = "assurance_scolaire")
     private Boolean assuranceScolaire;
-    @Lob
+    
     @Size(max = 65535)
     @Column(name = "probleme_sante")
     private String problemeSante;
