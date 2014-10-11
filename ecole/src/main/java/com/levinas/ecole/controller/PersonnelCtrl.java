@@ -48,6 +48,12 @@ public class PersonnelCtrl {
     }
 
     
+        @RequestMapping(method = RequestMethod.PUT)
+    public Personnel update(@RequestBody Personnel personnel) {
+        personnelService.saveOrUpdate(personnel);
+        return personnel;
+    }
+    
         @RequestMapping(method = RequestMethod.POST)
     public Personnel create(@RequestBody Personnel personnel) {
         personnelService.saveOrUpdate(personnel);

@@ -67,6 +67,24 @@ public class EnfantCtrl {
         return enfant;
     }
     
+    @RequestMapping(method = RequestMethod.PUT)
+    public Enfant update(@RequestBody Enfant enfant) {
+        enfantService.saveOrUpdate(enfant);
+        return enfant;
+    }
+    
+     @RequestMapping(value="/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Boolean> update2(@PathVariable int id, @RequestBody Enfant enfant) {
+        Enfant enfantId = enfantService.FindById(id);
+        if(enfantId == null){
+            return new ResponseEntity<>(Boolean.TRUE, HttpStatus.NOT_FOUND);
+        }else{
+            enfantService.saveOrUpdate(enfant);
+            return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+        }
+        
+    }
+    
  @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Boolean> delete(@PathVariable int id) {
         Enfant enfant = enfantService.FindById(id);
