@@ -7,7 +7,7 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,7 +43,7 @@ public class PeriodeJours implements Serializable {
     @Column(name = "idperiode_jours")
     private Integer idperiodeJours;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "periodeJoursIdperiodeJours")
-    private List<Inscription> inscriptionList;
+    private Collection<Inscription> inscriptionCollection;
     @JoinColumn(name = "jour_fin", referencedColumnName = "idjour")
     @ManyToOne(optional = false)
     private Jour jourFin;
@@ -68,12 +68,12 @@ public class PeriodeJours implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<Inscription> getInscriptionList() {
-        return inscriptionList;
+    public Collection<Inscription> getInscriptionCollection() {
+        return inscriptionCollection;
     }
 
-    public void setInscriptionList(List<Inscription> inscriptionList) {
-        this.inscriptionList = inscriptionList;
+    public void setInscriptionCollection(Collection<Inscription> inscriptionCollection) {
+        this.inscriptionCollection = inscriptionCollection;
     }
 
     public Jour getJourFin() {

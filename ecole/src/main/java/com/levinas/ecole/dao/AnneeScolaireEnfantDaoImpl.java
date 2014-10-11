@@ -7,7 +7,7 @@ package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
-import com.levinas.ecole.model.ResponsableEnfant;
+import com.levinas.ecole.model.AnneeScolaireEnfant;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,51 +22,51 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Configuration
-public class ResponsableEnfantDaoImpl implements ResponsableEnfantDao {
+public class AnneeScolaireEnfantDaoImpl implements AnneeScolaireEnfantDao {
 
     @Autowired
     SessionFactory sessionFactory;
 
     @Override
-    public void save(ResponsableEnfant responsableEnfant) {
+    public void save(AnneeScolaireEnfant anneeScolaireEnfant) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(responsableEnfant);
+        session.save(anneeScolaireEnfant);
     }
 
     @Override
-    public void delete(ResponsableEnfant responsableEnfant) {
+    public void delete(AnneeScolaireEnfant anneeScolaireEnfant) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(responsableEnfant);
+        session.delete(anneeScolaireEnfant);
     }
 
     @Override
     public List findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("ResponsableEnfant.findAll");
+        Query query = session.getNamedQuery("AnneeScolaireEnfant.findAll");
         return query.list();
     }
 
     @Override
-    public List<ResponsableEnfant> findByIdenfant(Enfant enfant) {
+    public List<AnneeScolaireEnfant> findByIdenfant(Enfant enfant) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("SELECT r FROM ResponsableEnfant r WHERE r.idenfant = :idenfant");
+        Query query = session.createQuery("SELECT r FROM AnneeScolaireEnfant r WHERE r.idenfant = :idenfant");
         query.setParameter("idenfant", enfant);
         return query.list();
     }
 
     @Override
-    public List<ResponsableEnfant> findByIdresponsable(Responsable responsable) {
+    public List<AnneeScolaireEnfant> findByIdresponsable(Responsable responsable) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("ResponsableEnfant.findByIdresponsable");
+        Query query = session.getNamedQuery("AnneeScolaireEnfant.findByIdresponsable");
         return query.list();
     }
 
     @Override
-    public ResponsableEnfant findByIdresponsableEnfant(int idResponsableEnfant) {
+    public AnneeScolaireEnfant findByIdanneeScolaireEnfant(int idAnneeScolaireEnfant) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("ResponsableEnfant.findByIdresponsableEnfant");
-        query.setParameter("idresponsableEnfant", idResponsableEnfant);
-        return (ResponsableEnfant)query.uniqueResult();
+        Query query = session.getNamedQuery("AnneeScolaireEnfant.findByIdanneeScolaireEnfant");
+        query.setParameter("idanneeScolaireEnfant", idAnneeScolaireEnfant);
+        return (AnneeScolaireEnfant)query.uniqueResult();
     }
 
 }

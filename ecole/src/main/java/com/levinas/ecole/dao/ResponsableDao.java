@@ -7,6 +7,7 @@
 package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Responsable;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public interface ResponsableDao {
     public List findAll();
+    public HashMap listAll(int page, int rpp, String search, boolean all);
     public Responsable findByIdresponsable(int idResponsable);
     public List findByNom(String nom);
     public List findByPrenom(String prenom);

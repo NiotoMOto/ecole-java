@@ -8,6 +8,7 @@ package com.levinas.ecole.service;
 
 import com.levinas.ecole.dao.PersonnelDao;
 import com.levinas.ecole.model.Personnel;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -28,9 +29,17 @@ public class PersonnelServiceImpl implements PersonnelService{
     @Autowired
     private PersonnelDao personnelDao ;
     
+    @Override
     public List listAll(){
         return personnelDao.listAll();
     }
+    
+    @Override
+    public HashMap listAll(int page, int rpp, String search){
+        search = '%' + search + '%' ;
+        return personnelDao.listAll(page, rpp, search);
+    }
+    
     @Transactional
     @Override
     public int saveOrUpdate(Personnel personnel){

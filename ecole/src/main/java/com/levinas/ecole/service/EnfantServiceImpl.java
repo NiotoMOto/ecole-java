@@ -8,6 +8,7 @@ package com.levinas.ecole.service;
 
 import com.levinas.ecole.dao.EnfantDao;
 import com.levinas.ecole.model.Enfant;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -28,18 +29,27 @@ public class EnfantServiceImpl implements EnfantService{
     @Autowired
     private EnfantDao enfantDao ;
     
+    @Override
     public List listAll(){
         return enfantDao.listAll();
     }
+    
+    @Override
+    public HashMap listAll(int page, int rpp, String search){
+        search = '%' + search + '%' ;
+        return enfantDao.listAll(page, rpp, search);
+    }
+    
     @Transactional
+    @Override
     public int saveOrUpdate(Enfant enfant){
-        int id = -1 ;
         enfantDao.saveOrUpdate(enfant);
         return enfant.getIdEnfant() ;
     }
     
     
     
+    @Override
     public Enfant FindById(int idEnfant){
         return enfantDao.FindById(idEnfant);
     }

@@ -7,6 +7,7 @@
 package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Responsable;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -31,6 +32,28 @@ public class ResponsableDaoImpl implements ResponsableDao{
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("Responsable.findAll");
         return query.list();
+    }
+    
+    public HashMap listAll(int page, int rpp, String search, boolean all){
+            Integer iRpp = rpp ;
+        HashMap result = new HashMap();
+        
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("SELECT r FROM Responsable r WHERE r.nom like :search OR r.prenom like :search OR r.adresse like :search OR r.ville like :search OR r.codePostale like :search");
+        query.setParameter("search", search);
+        double nbResult = query.list().size();
+        
+        if(!all){
+            query.setFirstResult((page - 1) * rpp);
+            query.setMaxResults(rpp);
+        }
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        
+        return result;
     }
 
     @Override

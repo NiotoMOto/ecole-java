@@ -9,7 +9,6 @@ package com.levinas.ecole.model;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,17 +43,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
     @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
-    @NamedQuery(name = "User.findByCreateTime", query = "SELECT u FROM User u WHERE u.createTime = :createTime")})
+    @NamedQuery(name = "User.findByCreateTime", query = "SELECT u FROM User u WHERE u.createTime = :createTime"),
+    @NamedQuery(name = "User.findByEnabled", query = "SELECT u FROM User u WHERE u.enabled = :enabled")})
 public class User implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUser")
-    private Collection<UserRole> userRoleCollection;
-    @Column(name = "enabled")
-    private Boolean enabled;
-    @JoinTable(name = "user_role", joinColumns = {
-        @JoinColumn(name = "user_id_user", referencedColumnName = "id_user")}, inverseJoinColumns = {
-        @JoinColumn(name = "role_idrole", referencedColumnName = "idrole")})
-    @ManyToMany
-    private Collection<Role> roleCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,8 +65,15 @@ public class User implements Serializable {
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+    @Column(name = "enabled")
+    private Boolean enabled;
+    @JoinTable(name = "user_role", joinColumns = {
+        @JoinColumn(name = "user_id_user", referencedColumnName = "id_user")}, inverseJoinColumns = {
+        @JoinColumn(name = "role_idrole", referencedColumnName = "idrole")})
+    @ManyToMany
+    private Collection<Role> roleCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userIdUser")
-    private List<Enfant> enfantList;
+    private Collection<Enfant> enfantCollection;
 
     public User() {
     }
@@ -124,14 +122,32 @@ public class User implements Serializable {
         this.createTime = createTime;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public List<Enfant> getEnfantList() {
-        return enfantList;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setEnfantList(List<Enfant> enfantList) {
-        this.enfantList = enfantList;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Role> getRoleCollection() {
+        return roleCollection;
+    }
+
+    public void setRoleCollection(Collection<Role> roleCollection) {
+        this.roleCollection = roleCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Enfant> getEnfantCollection() {
+        return enfantCollection;
+    }
+
+    public void setEnfantCollection(Collection<Enfant> enfantCollection) {
+        this.enfantCollection = enfantCollection;
     }
 
     @Override
@@ -157,34 +173,6 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.levinas.ecole.model.User[ idUser=" + idUser + " ]";
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Role> getRoleCollection() {
-        return roleCollection;
-    }
-
-    public void setRoleCollection(Collection<Role> roleCollection) {
-        this.roleCollection = roleCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<UserRole> getUserRoleCollection() {
-        return userRoleCollection;
-    }
-
-    public void setUserRoleCollection(Collection<UserRole> userRoleCollection) {
-        this.userRoleCollection = userRoleCollection;
     }
     
 }

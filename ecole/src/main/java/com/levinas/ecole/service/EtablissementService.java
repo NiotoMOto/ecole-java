@@ -3,21 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.levinas.ecole.service;
 
-import com.levinas.ecole.model.TypeResponsable;
+import com.levinas.ecole.model.Etablissement;
 import java.util.List;
 
 /**
  *
  * @author Administrateur
  */
-public interface TypeResponsableService {
+public interface EtablissementService {
 
     public List findAll();
-    public TypeResponsable findByIdtypeResponsable(int idTypeResponsable);
+    public Etablissement findByIdetablissement(int idEtablissement);
     public List findByLibelle(String libelle);
-    public void saveOrUpdate(TypeResponsable typeResponsable);
-    public void delete(TypeResponsable typeResponsable);
+    public void saveOrUpdate(Etablissement etablissement);
+    public void delete(Etablissement etablissement);
 
 }

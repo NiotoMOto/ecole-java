@@ -9,6 +9,7 @@ package com.levinas.ecole.service;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.TypeResponsable;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ import java.util.List;
  */
 public interface ResponsableService {
     public List findAll();
+    public HashMap listAll(int page, int rpp, String search, boolean all);
     public Responsable findByIdresponsable(int idResponsable);
     public List findByNom(String nom);
     public List findByPrenom(String prenom);

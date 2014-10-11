@@ -29,10 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ResponsableEnfant.findAll", query = "SELECT r FROM ResponsableEnfant r"),
-    @NamedQuery(name = "ResponsableEnfant.findByIdresponsableEnfant", query = "SELECT r FROM ResponsableEnfant r WHERE r.idresponsableEnfant = :idresponsableEnfant"),
-        @NamedQuery(name = "ResponsableEnfant.findByIdresponsable", query = "SELECT r FROM ResponsableEnfant r WHERE r.idresponsable = :idresponsable"),
-@NamedQuery(name = "ResponsableEnfant.findByIdenfant", query = "SELECT r FROM ResponsableEnfant r WHERE r.idenfant = :idenfant")
-})
+    @NamedQuery(name = "ResponsableEnfant.findByIdresponsableEnfant", query = "SELECT r FROM ResponsableEnfant r WHERE r.idresponsableEnfant = :idresponsableEnfant")})
 public class ResponsableEnfant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

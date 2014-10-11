@@ -18,6 +18,7 @@ public interface UserService {
     public List listAll();
     public int saveOrUpdate(User user);
     public void delete(User user);
+    public User findByIdUser(int idUser);
     public List findByMail(String mail);
     public User findByUsername(String username);
     public User findByIdtypeResponsable(int idUser);

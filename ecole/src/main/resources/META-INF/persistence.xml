@@ -4,6 +4,25 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.levinas.ecole.model.Personel</class>
     <class>com.levinas.ecole.model.Personnel</class>
+    <class>com.levinas.ecole.model.AnneeScolaireEnfant</class>
+    <class>com.levinas.ecole.model.AnneeScolaire</class>
+    <class>com.levinas.ecole.model.PaiementDu</class>
+    <class>com.levinas.ecole.model.Jour</class>
+    <class>com.levinas.ecole.model.Responsable</class>
+    <class>com.levinas.ecole.model.Etablissement</class>
+    <class>com.levinas.ecole.model.EnfantSession</class>
+    <class>com.levinas.ecole.model.Ecolage</class>
+    <class>com.levinas.ecole.model.ResponsableEnfant</class>
+    <class>com.levinas.ecole.model.PeriodeJours</class>
+    <class>com.levinas.ecole.model.Activite</class>
+    <class>com.levinas.ecole.model.TypeResponsable</class>
+    <class>com.levinas.ecole.model.User</class>
+    <class>com.levinas.ecole.model.Enfant</class>
+    <class>com.levinas.ecole.model.Periode</class>
+    <class>com.levinas.ecole.model.Inscription</class>
+    <class>com.levinas.ecole.model.Classe</class>
+    <class>com.levinas.ecole.model.Role</class>
+    <class>com.levinas.ecole.model.Paiement</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ecole?zeroDateTimeBehavior=convertToNull"/>

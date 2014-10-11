@@ -6,9 +6,9 @@
 package com.levinas.ecole.controller;
 
 import com.levinas.ecole.model.Enfant;
-import com.levinas.ecole.model.ResponsableEnfant;
+import com.levinas.ecole.model.AnneeScolaireEnfant;
 import com.levinas.ecole.service.EnfantService;
-import com.levinas.ecole.service.ResponsableEnfantService;
+import com.levinas.ecole.service.AnneeScolaireEnfantService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -29,42 +29,42 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 @RestController
 @Configuration
-@RequestMapping(value = "/responsableEnfant")
-public class ResponsableEnfantCtrl {
+@RequestMapping(value = "/anneeScolaireEnfant")
+public class AnneeScolaireEnfantCtrl {
 
     @Autowired
-    ResponsableEnfantService responsableEnfantService;
+    AnneeScolaireEnfantService anneeScolaireEnfantService;
 
     @Autowired
     EnfantService enfantService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<ResponsableEnfant> listAll(
+    public List<AnneeScolaireEnfant> listAll(
             @RequestParam(value = "byEnfant", required = false) Integer idEnfant
     ) {
         if (idEnfant != null) {
             Enfant enfant = enfantService.FindById(idEnfant);
-            return responsableEnfantService.findByIdenfant(enfant);
+            return anneeScolaireEnfantService.findByIdenfant(enfant);
         }
-        return responsableEnfantService.findAll();
+        return anneeScolaireEnfantService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponsableEnfant findById(@PathVariable int id) {
-        ResponsableEnfant responsableEnfant = responsableEnfantService.findByIdresponsableEnfant(id);
-        return responsableEnfant;
+    public AnneeScolaireEnfant findById(@PathVariable int id) {
+        AnneeScolaireEnfant anneeScolaireEnfant = anneeScolaireEnfantService.findByIdanneeScolaireEnfant(id);
+        return anneeScolaireEnfant;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponsableEnfant create(@RequestBody ResponsableEnfant responsableEnfant) {
-        responsableEnfantService.save(responsableEnfant);
-        return responsableEnfant;
+    public AnneeScolaireEnfant create(@RequestBody AnneeScolaireEnfant anneeScolaireEnfant) {
+        anneeScolaireEnfantService.save(anneeScolaireEnfant);
+        return anneeScolaireEnfant;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Boolean> delete(@PathVariable int id) {
-        ResponsableEnfant responsableEnfant = responsableEnfantService.findByIdresponsableEnfant(id);
-        responsableEnfantService.delete(responsableEnfant);
+        AnneeScolaireEnfant anneeScolaireEnfant = anneeScolaireEnfantService.findByIdanneeScolaireEnfant(id);
+        anneeScolaireEnfantService.delete(anneeScolaireEnfant);
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
 

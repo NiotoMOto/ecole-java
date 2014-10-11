@@ -7,7 +7,7 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -34,6 +35,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Classe.findAll", query = "SELECT c FROM Classe c"),
     @NamedQuery(name = "Classe.findByIdClasse", query = "SELECT c FROM Classe c WHERE c.idClasse = :idClasse")})
 public class Classe implements Serializable {
+    @Size(max = 45)
+    @Column(name = "libelle")
+    private String libelle;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +45,7 @@ public class Classe implements Serializable {
     @Column(name = "idClasse")
     private Integer idClasse;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClasse")
-    private List<AnneeScolaireEnfant> anneeScolaireEnfantList;
+    private Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection;
 
     public Classe() {
     }
@@ -60,12 +64,12 @@ public class Classe implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<AnneeScolaireEnfant> getAnneeScolaireEnfantList() {
-        return anneeScolaireEnfantList;
+    public Collection<AnneeScolaireEnfant> getAnneeScolaireEnfantCollection() {
+        return anneeScolaireEnfantCollection;
     }
 
-    public void setAnneeScolaireEnfantList(List<AnneeScolaireEnfant> anneeScolaireEnfantList) {
-        this.anneeScolaireEnfantList = anneeScolaireEnfantList;
+    public void setAnneeScolaireEnfantCollection(Collection<AnneeScolaireEnfant> anneeScolaireEnfantCollection) {
+        this.anneeScolaireEnfantCollection = anneeScolaireEnfantCollection;
     }
 
     @Override
@@ -91,6 +95,14 @@ public class Classe implements Serializable {
     @Override
     public String toString() {
         return "com.levinas.ecole.model.Classe[ idClasse=" + idClasse + " ]";
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
     
 }

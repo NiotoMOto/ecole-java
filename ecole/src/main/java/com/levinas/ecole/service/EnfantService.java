@@ -7,6 +7,7 @@
 package com.levinas.ecole.service;
 
 import com.levinas.ecole.model.Enfant;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public interface EnfantService {
     public List listAll();
+    public HashMap listAll(int page, int rpp, String search);
     public Enfant FindById(int idEnfant);
     public List findByNom(String nom);
     public int saveOrUpdate(Enfant enfant);

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.levinas.ecole.service;
 
 import com.levinas.ecole.dao.UserDao;
@@ -17,14 +16,15 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author Antone
- */@Service
+ */
+@Service
 @Configuration
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDao userDao;
-    
+
     @Override
     public List listAll() {
         return userDao.listAll();
@@ -36,10 +36,15 @@ public class UserServiceImpl implements UserService{
         userDao.saveOrUpdate(user);
         return id;
     }
+
+    @Override
+    public void delete(User user) {
+        userDao.delete(user);
+    }
     
     @Override
-    public void delete(User user){
-        userDao.delete(user);
+    public User findByIdUser(int idUser) {
+        return userDao.findByIdUser(idUser);
     }
 
     @Override
@@ -51,12 +56,10 @@ public class UserServiceImpl implements UserService{
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
-    
+
     @Override
-    public User findByIdtypeResponsable(int idUser){
+    public User findByIdtypeResponsable(int idUser) {
         return userDao.findByIdUser(idUser);
     }
-        
 
-    
 }

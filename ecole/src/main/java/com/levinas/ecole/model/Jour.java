@@ -7,7 +7,7 @@
 package com.levinas.ecole.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,9 +46,9 @@ public class Jour implements Serializable {
     @Column(name = "jour")
     private String jour;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jourFin")
-    private List<PeriodeJours> periodeJoursList;
+    private Collection<PeriodeJours> periodeJoursCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jourDebut")
-    private List<PeriodeJours> periodeJoursList1;
+    private Collection<PeriodeJours> periodeJoursCollection1;
 
     public Jour() {
     }
@@ -75,22 +75,22 @@ public class Jour implements Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public List<PeriodeJours> getPeriodeJoursList() {
-        return periodeJoursList;
+    public Collection<PeriodeJours> getPeriodeJoursCollection() {
+        return periodeJoursCollection;
     }
 
-    public void setPeriodeJoursList(List<PeriodeJours> periodeJoursList) {
-        this.periodeJoursList = periodeJoursList;
+    public void setPeriodeJoursCollection(Collection<PeriodeJours> periodeJoursCollection) {
+        this.periodeJoursCollection = periodeJoursCollection;
     }
 
     @XmlTransient
     @JsonIgnore
-    public List<PeriodeJours> getPeriodeJoursList1() {
-        return periodeJoursList1;
+    public Collection<PeriodeJours> getPeriodeJoursCollection1() {
+        return periodeJoursCollection1;
     }
 
-    public void setPeriodeJoursList1(List<PeriodeJours> periodeJoursList1) {
-        this.periodeJoursList1 = periodeJoursList1;
+    public void setPeriodeJoursCollection1(Collection<PeriodeJours> periodeJoursCollection1) {
+        this.periodeJoursCollection1 = periodeJoursCollection1;
     }
 
     @Override

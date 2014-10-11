@@ -11,6 +11,7 @@ import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.ResponsableEnfant;
 import com.levinas.ecole.model.TypeResponsable;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -36,6 +37,12 @@ public class ResponsableServiceImpl implements ResponsableService {
     @Override
     public List findAll() {
         return responsableDao.findAll();
+    }
+    
+    @Override
+    public HashMap listAll(int page, int rpp, String search, boolean all){
+        search = '%' + search + '%' ;
+        return responsableDao.listAll(page, rpp, search, all);
     }
 
     @Override
