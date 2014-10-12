@@ -33,6 +33,11 @@ public class EnfantSessionServiceImpl implements EnfantSessionService{
     public void save(EnfantSession enfantSession) {
         enfantSessionDao.save(enfantSession);
     }
+    
+    @Override
+    public void update(EnfantSession enfantSession) {
+        enfantSessionDao.update(enfantSession);
+    }
 
     @Override
     public List findAll() {

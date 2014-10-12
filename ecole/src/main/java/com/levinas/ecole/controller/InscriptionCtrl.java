@@ -5,8 +5,10 @@
  */
 package com.levinas.ecole.controller;
 
-import com.levinas.ecole.model.Classe;
-import com.levinas.ecole.service.ClasseService;
+import com.levinas.ecole.model.Activite;
+import com.levinas.ecole.model.Inscription;
+import com.levinas.ecole.service.ActiviteService;
+import com.levinas.ecole.service.InscriptionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,39 +29,50 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 @RestController
 @Configuration
-@RequestMapping(value = "/classe")
-public class ClasseCtrl {
+@RequestMapping(value = "/inscription")
+public class InscriptionCtrl {
 
     @Autowired
-    ClasseService classeService;
+    InscriptionService inscriptionService;
+
+    @Autowired
+    ActiviteService activiteService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Classe> listAll() {
-        return classeService.findAll();
+    public List<Inscription> listAll(
+            @RequestParam(value = "byActivite", required = false) Integer idActivite
+    ) 
+    {
+        if (idActivite != null) {
+            Activite activite = activiteService.findByIdactivite(idActivite);
+            return inscriptionService.findByActivite(activite);
+        }
+
+        return inscriptionService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Classe findById(@PathVariable int id) {
-        Classe classe = classeService.findByIdclasse(id);
-        return classe;
+    public Inscription findById(@PathVariable int id) {
+        Inscription inscription = inscriptionService.findByIdinscription(id);
+        return inscription;
     }
-    
+
     @RequestMapping(method = RequestMethod.PUT)
-    public Classe update(@RequestBody Classe classe) {
-        classeService.saveOrUpdate(classe);
-        return classe;
+    public Inscription update(@RequestBody Inscription inscription) {
+        inscriptionService.update(inscription);
+        return inscription;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Classe create(@RequestBody Classe classe) {
-        classeService.saveOrUpdate(classe);
-        return classe;
+    public Inscription create(@RequestBody Inscription inscription) {
+        inscriptionService.save(inscription);
+        return inscription;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Boolean> delete(@PathVariable int id) {
-        Classe classe = classeService.findByIdclasse(id);
-        classeService.delete(classe);
+        Inscription inscription = inscriptionService.findByIdinscription(id);
+        inscriptionService.delete(inscription);
         return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
     }
 

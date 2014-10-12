@@ -5,8 +5,8 @@
  */
 package com.levinas.ecole.controller;
 
-import com.levinas.ecole.model.Classe;
-import com.levinas.ecole.service.ClasseService;
+import com.levinas.ecole.model.JourSemaine;
+import com.levinas.ecole.service.JourSemaineService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -26,39 +26,39 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 @RestController
 @Configuration
-@RequestMapping(value = "/classe")
-public class ClasseCtrl {
+@RequestMapping(value = "/jourSemaine")
+public class JourSemaineCtrl {
 
     @Autowired
-    ClasseService classeService;
+    JourSemaineService jourSemaineService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Classe> listAll() {
-        return classeService.findAll();
+    public List<JourSemaine> listAll() {
+        return jourSemaineService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Classe findById(@PathVariable int id) {
-        Classe classe = classeService.findByIdclasse(id);
-        return classe;
+    public JourSemaine findById(@PathVariable int id) {
+        JourSemaine jourSemaine = jourSemaineService.findByIdjourSemaine(id);
+        return jourSemaine;
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public Classe update(@RequestBody Classe classe) {
-        classeService.saveOrUpdate(classe);
-        return classe;
+    public JourSemaine update(@RequestBody JourSemaine jourSemaine) {
+        jourSemaineService.update(jourSemaine);
+        return jourSemaine;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Classe create(@RequestBody Classe classe) {
-        classeService.saveOrUpdate(classe);
-        return classe;
+    public JourSemaine create(@RequestBody JourSemaine jourSemaine) {
+        jourSemaineService.save(jourSemaine);
+        return jourSemaine;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Boolean> delete(@PathVariable int id) {
-        Classe classe = classeService.findByIdclasse(id);
-        classeService.delete(classe);
+        JourSemaine jourSemaine = jourSemaineService.findByIdjourSemaine(id);
+        jourSemaineService.delete(jourSemaine);
         return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
     }
 

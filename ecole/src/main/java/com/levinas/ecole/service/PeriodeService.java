@@ -19,8 +19,10 @@ import java.util.List;
 public interface PeriodeService {
     
     public void save(Periode periode);
+    public void update(Periode periode);
     public List findAll();
     public void delete(Periode periode);
     public Periode findByIdperiode (int idPeriode);
 
 }
+

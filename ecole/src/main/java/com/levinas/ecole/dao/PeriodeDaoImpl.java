@@ -32,6 +32,12 @@ public class PeriodeDaoImpl implements PeriodeDao {
         Session session = sessionFactory.getCurrentSession();
         session.save(periode);
     }
+    
+    @Override
+    public void update(Periode periode) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(periode);
+    }
 
     @Override
     public void delete(Periode periode) {

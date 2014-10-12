@@ -32,6 +32,12 @@ public class EnfantSessionDaoImpl implements EnfantSessionDao {
         Session session = sessionFactory.getCurrentSession();
         session.save(enfantSession);
     }
+    
+    @Override
+    public void update(EnfantSession enfantSession) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(enfantSession);
+    }
 
     @Override
     public void delete(EnfantSession enfantSession) {

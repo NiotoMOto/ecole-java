@@ -19,8 +19,10 @@ import java.util.List;
 public interface JourSemaineService {
     
     public void save(JourSemaine jourSemaine);
+    public void update(JourSemaine jourSemaine);
     public List findAll();
     public void delete(JourSemaine jourSemaine);
     public JourSemaine findByIdjourSemaine (int idJourSemaine);
 
 }
+

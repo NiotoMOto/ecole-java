@@ -7,10 +7,8 @@
 package com.levinas.ecole.service;
 
 import com.levinas.ecole.dao.InscriptionDao;
-import com.levinas.ecole.model.Enfant;
-import com.levinas.ecole.model.Responsable;
+import com.levinas.ecole.model.Activite;
 import com.levinas.ecole.model.Inscription;
-import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -33,10 +31,20 @@ public class InscriptionServiceImpl implements InscriptionService{
     public void save(Inscription inscription) {
         inscriptionDao.save(inscription);
     }
+    
+    @Override
+    public void update(Inscription inscription) {
+        inscriptionDao.update(inscription);
+    }
 
     @Override
     public List findAll() {
         return inscriptionDao.findAll();
+    }
+    
+    @Override
+    public List findByActivite(Activite activite){
+        return inscriptionDao.findByActivite(activite);
     }
     
  

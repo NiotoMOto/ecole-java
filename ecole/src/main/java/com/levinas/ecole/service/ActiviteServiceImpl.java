@@ -33,6 +33,11 @@ public class ActiviteServiceImpl implements ActiviteService{
     public void save(Activite activite) {
         activiteDao.save(activite);
     }
+    
+    @Override
+    public void update(Activite activite) {
+        activiteDao.update(activite);
+    }
 
     @Override
     public List findAll() {

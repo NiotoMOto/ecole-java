@@ -5,6 +5,7 @@
  */
 package com.levinas.ecole.dao;
 
+import com.levinas.ecole.model.Activite;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.Inscription;
@@ -32,6 +33,12 @@ public class InscriptionDaoImpl implements InscriptionDao {
         Session session = sessionFactory.getCurrentSession();
         session.save(inscription);
     }
+    
+    @Override
+    public void update(Inscription inscription) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(inscription);
+    }
 
     @Override
     public void delete(Inscription inscription) {
@@ -43,6 +50,14 @@ public class InscriptionDaoImpl implements InscriptionDao {
     public List findAll() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("Inscription.findAll");
+        return query.list();
+    }
+    
+    @Override
+    public List findByActivite(Activite activite) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("SELECT i FROM Inscription i WHERE i.idactivite = :activite");
+        query.setParameter("activite", activite);
         return query.list();
     }
 

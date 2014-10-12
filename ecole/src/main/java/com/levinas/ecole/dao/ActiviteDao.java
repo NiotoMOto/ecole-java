@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface ActiviteDao {
     public void save(Activite activite);
+    public void update(Activite activite);
     public List findAll();
     public void delete(Activite activite);
     public Activite findByIdactivite (int idActivite);

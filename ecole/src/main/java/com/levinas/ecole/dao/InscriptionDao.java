@@ -6,6 +6,7 @@
 
 package com.levinas.ecole.dao;
 
+import com.levinas.ecole.model.Activite;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.Inscription;
@@ -17,7 +18,10 @@ import java.util.List;
  */
 public interface InscriptionDao {
     public void save(Inscription inscription);
+    public void update(Inscription inscription);
     public List findAll();
+    public List findByActivite(Activite activite);
     public void delete(Inscription inscription);
     public Inscription findByIdinscription (int idInscription);
 }
+

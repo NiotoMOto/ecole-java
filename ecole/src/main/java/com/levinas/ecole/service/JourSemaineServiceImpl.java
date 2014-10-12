@@ -33,6 +33,11 @@ public class JourSemaineServiceImpl implements JourSemaineService{
     public void save(JourSemaine jourSemaine) {
         jourSemaineDao.save(jourSemaine);
     }
+    
+    @Override
+    public void update(JourSemaine jourSemaine) {
+        jourSemaineDao.update(jourSemaine);
+    }
 
     @Override
     public List findAll() {

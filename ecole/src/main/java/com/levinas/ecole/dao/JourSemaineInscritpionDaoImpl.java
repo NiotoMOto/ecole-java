@@ -5,8 +5,7 @@
  */
 package com.levinas.ecole.dao;
 
-import com.levinas.ecole.model.Enfant;
-import com.levinas.ecole.model.Responsable;
+import com.levinas.ecole.model.Inscription;
 import com.levinas.ecole.model.JourSemaineInscritpion;
 import java.util.List;
 import org.hibernate.Query;
@@ -32,6 +31,12 @@ public class JourSemaineInscritpionDaoImpl implements JourSemaineInscritpionDao 
         Session session = sessionFactory.getCurrentSession();
         session.save(jourSemaineInscritpion);
     }
+    
+    @Override
+    public void update(JourSemaineInscritpion jourSemaineInscritpion) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(jourSemaineInscritpion);
+    }
 
     @Override
     public void delete(JourSemaineInscritpion jourSemaineInscritpion) {
@@ -43,6 +48,14 @@ public class JourSemaineInscritpionDaoImpl implements JourSemaineInscritpionDao 
     public List findAll() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.getNamedQuery("JourSemaineInscritpion.findAll");
+        return query.list();
+    }
+    
+    @Override
+    public List findByInscription(Inscription inscription) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("SELECT jsi FROM JourSemaineInscritpion jsi WHERE jsi.inscriptionIdinscription = :inscription");
+        query.setParameter("inscription", inscription);
         return query.list();
     }
 

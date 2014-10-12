@@ -32,6 +32,12 @@ public class ActiviteDaoImpl implements ActiviteDao {
         Session session = sessionFactory.getCurrentSession();
         session.save(activite);
     }
+    
+    @Override
+    public void update(Activite activite) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(activite);
+    }
 
     @Override
     public void delete(Activite activite) {

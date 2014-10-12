@@ -33,6 +33,12 @@ public class PeriodeServiceImpl implements PeriodeService{
     public void save(Periode periode) {
         periodeDao.save(periode);
     }
+    
+    @Override
+    public void update(Periode periode) {
+        periodeDao.update(periode);
+    }
+
 
     @Override
     public List findAll() {

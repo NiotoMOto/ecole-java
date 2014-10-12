@@ -5,8 +5,8 @@
  */
 package com.levinas.ecole.controller;
 
-import com.levinas.ecole.model.Classe;
-import com.levinas.ecole.service.ClasseService;
+import com.levinas.ecole.model.Periode;
+import com.levinas.ecole.service.PeriodeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -26,39 +26,39 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 @RestController
 @Configuration
-@RequestMapping(value = "/classe")
-public class ClasseCtrl {
+@RequestMapping(value = "/periode")
+public class PeriodeCtrl {
 
     @Autowired
-    ClasseService classeService;
+    PeriodeService periodeService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Classe> listAll() {
-        return classeService.findAll();
+    public List<Periode> listAll() {
+        return periodeService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Classe findById(@PathVariable int id) {
-        Classe classe = classeService.findByIdclasse(id);
-        return classe;
+    public Periode findById(@PathVariable int id) {
+        Periode periode = periodeService.findByIdperiode(id);
+        return periode;
     }
     
     @RequestMapping(method = RequestMethod.PUT)
-    public Classe update(@RequestBody Classe classe) {
-        classeService.saveOrUpdate(classe);
-        return classe;
+    public Periode update(@RequestBody Periode periode) {
+        periodeService.update(periode);
+        return periode;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Classe create(@RequestBody Classe classe) {
-        classeService.saveOrUpdate(classe);
-        return classe;
+    public Periode create(@RequestBody Periode periode) {
+        periodeService.save(periode);
+        return periode;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Boolean> delete(@PathVariable int id) {
-        Classe classe = classeService.findByIdclasse(id);
-        classeService.delete(classe);
+        Periode periode = periodeService.findByIdperiode(id);
+        periodeService.delete(periode);
         return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
     }
 

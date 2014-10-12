@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface EnfantSessionDao {
     public void save(EnfantSession enfantSession);
+    public void update(EnfantSession enfantSession);
     public List findAll();
     public void delete(EnfantSession enfantSession);
     public EnfantSession findByIdenfantSession (int idEnfantSession);

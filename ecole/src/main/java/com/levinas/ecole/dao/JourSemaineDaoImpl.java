@@ -32,6 +32,12 @@ public class JourSemaineDaoImpl implements JourSemaineDao {
         Session session = sessionFactory.getCurrentSession();
         session.save(jourSemaine);
     }
+    
+    @Override
+    public void update(JourSemaine jourSemaine) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(jourSemaine);
+    }
 
     @Override
     public void delete(JourSemaine jourSemaine) {

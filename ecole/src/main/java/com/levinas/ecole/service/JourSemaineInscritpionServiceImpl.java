@@ -8,6 +8,7 @@ package com.levinas.ecole.service;
 
 import com.levinas.ecole.dao.JourSemaineInscritpionDao;
 import com.levinas.ecole.model.Enfant;
+import com.levinas.ecole.model.Inscription;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.JourSemaineInscritpion;
 import java.util.HashMap;
@@ -33,10 +34,19 @@ public class JourSemaineInscritpionServiceImpl implements JourSemaineInscritpion
     public void save(JourSemaineInscritpion jourSemaineInscritpion) {
         jourSemaineInscritpionDao.save(jourSemaineInscritpion);
     }
+    
+    @Override
+    public void update(JourSemaineInscritpion jourSemaineInscritpion) {
+        jourSemaineInscritpionDao.update(jourSemaineInscritpion);
+    }
 
     @Override
     public List findAll() {
         return jourSemaineInscritpionDao.findAll();
+    }
+    @Override
+    public List findByInscription(Inscription inscription){
+        return jourSemaineInscritpionDao.findByInscription(inscription);
     }
     
  
