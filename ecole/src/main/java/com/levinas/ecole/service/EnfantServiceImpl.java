@@ -30,7 +30,7 @@ public class EnfantServiceImpl implements EnfantService{
     private EnfantDao enfantDao ;
     
     @Override
-    public List listAll(){
+    public HashMap listAll(){
         return enfantDao.listAll();
     }
     

@@ -6,6 +6,7 @@
 package com.levinas.ecole.service;
 
 import com.levinas.ecole.model.TypeResponsable;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public interface TypeResponsableService {
 
-    public List findAll();
+    public HashMap findAll();
     public TypeResponsable findByIdtypeResponsable(int idTypeResponsable);
     public List findByLibelle(String libelle);
     public void saveOrUpdate(TypeResponsable typeResponsable);

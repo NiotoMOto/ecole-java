@@ -8,6 +8,7 @@ package com.levinas.ecole.service;
 
 import com.levinas.ecole.dao.TypeResponsableDao;
 import com.levinas.ecole.model.TypeResponsable;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,7 @@ public class TypeResponsableServiceImpl implements TypeResponsableService{
     TypeResponsableDao typeResponsableDao;
     
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return typeResponsableDao.findAll();
     }
 

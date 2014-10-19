@@ -8,6 +8,7 @@ package com.levinas.ecole.dao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.EnfantSession;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -46,10 +47,17 @@ public class EnfantSessionDaoImpl implements EnfantSessionDao {
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         Session session = sessionFactory.getCurrentSession();
+        HashMap result = new HashMap();
         Query query = session.getNamedQuery("EnfantSession.findAll");
-        return query.list();
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
 
 

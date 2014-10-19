@@ -9,6 +9,7 @@ import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.AnneeScolaireEnfant;
 import com.levinas.ecole.service.EnfantService;
 import com.levinas.ecole.service.AnneeScolaireEnfantService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +40,7 @@ public class AnneeScolaireEnfantCtrl {
     EnfantService enfantService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<AnneeScolaireEnfant> listAll(
+    public HashMap listAll(
             @RequestParam(value = "byEnfant", required = false) Integer idEnfant
     ) {
         if (idEnfant != null) {

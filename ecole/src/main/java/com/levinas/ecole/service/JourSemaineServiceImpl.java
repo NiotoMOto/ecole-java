@@ -40,7 +40,7 @@ public class JourSemaineServiceImpl implements JourSemaineService{
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return jourSemaineDao.findAll();
     }
     

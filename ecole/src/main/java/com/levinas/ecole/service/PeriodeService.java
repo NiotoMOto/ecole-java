@@ -20,7 +20,7 @@ public interface PeriodeService {
     
     public void save(Periode periode);
     public void update(Periode periode);
-    public List findAll();
+    public HashMap findAll();
     public void delete(Periode periode);
     public Periode findByIdperiode (int idPeriode);
 

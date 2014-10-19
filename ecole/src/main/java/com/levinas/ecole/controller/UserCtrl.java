@@ -8,6 +8,7 @@ package com.levinas.ecole.controller;
 
 import com.levinas.ecole.model.User;
 import com.levinas.ecole.service.UserService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class UserCtrl {
     UserService userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<User> listAll() {
+    public HashMap listAll() {
         return userService.listAll();
     }
 

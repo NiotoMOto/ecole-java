@@ -35,7 +35,7 @@ public class AnneeScolaireEnfantServiceImpl implements AnneeScolaireEnfantServic
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return anneeScolaireEnfantDao.findAll();
     }
     
@@ -51,7 +51,7 @@ public class AnneeScolaireEnfantServiceImpl implements AnneeScolaireEnfantServic
     }
 
     @Override
-    public List<AnneeScolaireEnfant> findByIdenfant(Enfant enfant) {
+    public HashMap findByIdenfant(Enfant enfant) {
         return anneeScolaireEnfantDao.findByIdenfant(enfant);
     }
 

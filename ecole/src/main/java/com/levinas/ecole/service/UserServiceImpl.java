@@ -7,6 +7,7 @@ package com.levinas.ecole.service;
 
 import com.levinas.ecole.dao.UserDao;
 import com.levinas.ecole.model.User;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
     @Override
-    public List listAll() {
+    public HashMap listAll() {
         return userDao.listAll();
     }
 

@@ -9,6 +9,7 @@ package com.levinas.ecole.dao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.JourSemaine;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 public interface JourSemaineDao {
     public void save(JourSemaine jourSemaine);
     public void update(JourSemaine jourSemaine);
-    public List findAll();
+    public HashMap findAll();
     public void delete(JourSemaine jourSemaine);
     public JourSemaine findByIdjourSemaine (int idJourSemaine);
 }

@@ -7,6 +7,7 @@
 package com.levinas.ecole.service;
 
 import com.levinas.ecole.model.User;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface UserService {
     
-    public List listAll();
+    public HashMap listAll();
     public int saveOrUpdate(User user);
     public void delete(User user);
     public User findByIdUser(int idUser);

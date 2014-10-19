@@ -7,6 +7,7 @@ package com.levinas.ecole.controller;
 
 import com.levinas.ecole.model.Etablissement;
 import com.levinas.ecole.service.EtablissementService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,7 @@ public class EtablissementCtrl {
     EtablissementService etablissementService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Etablissement> listAll() {
+    public HashMap listAll() {
         return etablissementService.findAll();
     }
 

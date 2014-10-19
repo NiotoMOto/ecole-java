@@ -8,6 +8,7 @@ package com.levinas.ecole.service;
 
 import com.levinas.ecole.model.Activite;
 import com.levinas.ecole.model.Inscription;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,8 +19,8 @@ public interface InscriptionService {
     
     public void save(Inscription inscription);
     public void update(Inscription inscription);
-    public List findAll();
-    public List findByActivite(Activite activite);
+    public HashMap findAll();
+    public HashMap findByActivite(Activite activite);
     public void delete(Inscription inscription);
     public Inscription findByIdinscription (int idInscription);
 

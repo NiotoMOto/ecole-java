@@ -20,7 +20,7 @@ public interface EnfantSessionService {
     
     public void save(EnfantSession enfantSession);
     public void update(EnfantSession enfantSession);
-    public List findAll();
+    public HashMap findAll();
     public void delete(EnfantSession enfantSession);
     public EnfantSession findByIdenfantSession (int idEnfantSession);
 

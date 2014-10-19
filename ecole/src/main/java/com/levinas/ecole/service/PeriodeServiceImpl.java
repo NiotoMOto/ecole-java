@@ -41,7 +41,7 @@ public class PeriodeServiceImpl implements PeriodeService{
 
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return periodeDao.findAll();
     }
     

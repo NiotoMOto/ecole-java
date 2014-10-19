@@ -35,7 +35,7 @@ public class ResponsableEnfantServiceImpl implements ResponsableEnfantService{
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return responsableEnfantDao.findAll();
     }
     
@@ -51,7 +51,7 @@ public class ResponsableEnfantServiceImpl implements ResponsableEnfantService{
     }
 
     @Override
-    public List<ResponsableEnfant> findByIdenfant(Enfant enfant) {
+    public HashMap findByIdenfant(Enfant enfant) {
         return responsableEnfantDao.findByIdenfant(enfant);
     }
 

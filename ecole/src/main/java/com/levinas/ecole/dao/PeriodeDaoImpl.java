@@ -8,6 +8,7 @@ package com.levinas.ecole.dao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.Periode;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -46,10 +47,17 @@ public class PeriodeDaoImpl implements PeriodeDao {
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("Periode.findAll");
-        return query.list();
+        HashMap result = new HashMap();
+        Query query = session.getNamedQuery("Inscription.findAll");
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
 
 

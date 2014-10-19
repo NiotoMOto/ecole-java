@@ -20,7 +20,7 @@ public interface ActiviteService {
     
     public void save(Activite activite);
     public void update(Activite activite);
-    public List findAll();
+    public HashMap findAll();
     public void delete(Activite activite);
     public Activite findByIdactivite (int idActivite);
 

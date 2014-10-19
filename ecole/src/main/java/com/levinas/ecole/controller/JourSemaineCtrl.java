@@ -7,6 +7,7 @@ package com.levinas.ecole.controller;
 
 import com.levinas.ecole.model.JourSemaine;
 import com.levinas.ecole.service.JourSemaineService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,7 @@ public class JourSemaineCtrl {
     JourSemaineService jourSemaineService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<JourSemaine> listAll() {
+    public HashMap listAll() {
         return jourSemaineService.findAll();
     }
 

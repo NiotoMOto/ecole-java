@@ -9,6 +9,7 @@ import com.levinas.ecole.model.Inscription;
 import com.levinas.ecole.model.JourSemaineInscritpion;
 import com.levinas.ecole.service.InscriptionService;
 import com.levinas.ecole.service.JourSemaineInscritpionService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +40,7 @@ public class JourSemaineInscritpionCtrl {
     InscriptionService inscriptionService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<JourSemaineInscritpion> listAll(
+    public HashMap listAll(
             @RequestParam(value = "byInscription", required = false) Integer idInscription
     ) {
 

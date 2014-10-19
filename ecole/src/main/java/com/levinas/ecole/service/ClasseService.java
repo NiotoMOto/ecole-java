@@ -7,6 +7,7 @@
 package com.levinas.ecole.service;
 
 import com.levinas.ecole.model.Classe;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface ClasseService {
 
-    public List findAll();
+    public HashMap findAll();
     public Classe findByIdclasse(int idClasse);
     public List findByLibelle(String libelle);
     public void saveOrUpdate(Classe classe);

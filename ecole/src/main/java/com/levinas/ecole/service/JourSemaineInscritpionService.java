@@ -21,8 +21,8 @@ public interface JourSemaineInscritpionService {
     
     public void save(JourSemaineInscritpion jourSemaineInscritpion);
     public void update(JourSemaineInscritpion jourSemaineInscritpion);
-    public List findAll();
-    public List findByInscription(Inscription inscription);
+    public HashMap findAll();
+    public HashMap findByInscription(Inscription inscription);
     public void delete(JourSemaineInscritpion jourSemaineInscritpion);
     public JourSemaineInscritpion findByIdjourSemaineInscritpion (int idJourSemaineInscritpion);
 

@@ -7,6 +7,7 @@
 package com.levinas.ecole.service;
 
 import com.levinas.ecole.model.AnneeScolaire;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface AnneeScolaireService {
 
-    public List findAll();
+    public HashMap findAll();
     public AnneeScolaire findByIdanneeScolaire(int idAnneeScolaire);
     public List findByLibelle(String libelle);
     public void saveOrUpdate(AnneeScolaire anneeScolaire);

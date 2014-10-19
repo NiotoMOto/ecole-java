@@ -7,6 +7,7 @@ package com.levinas.ecole.controller;
 
 import com.levinas.ecole.model.EnfantSession;
 import com.levinas.ecole.service.EnfantSessionService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,7 @@ public class EnfantSessionCtrl {
     EnfantSessionService enfantSessionService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<EnfantSession> listAll() {
+    public HashMap listAll() {
         return enfantSessionService.findAll();
     }
 

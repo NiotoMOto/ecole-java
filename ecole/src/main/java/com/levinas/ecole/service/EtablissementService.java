@@ -7,6 +7,7 @@
 package com.levinas.ecole.service;
 
 import com.levinas.ecole.model.Etablissement;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface EtablissementService {
 
-    public List findAll();
+    public HashMap findAll();
     public Etablissement findByIdetablissement(int idEtablissement);
     public List findByLibelle(String libelle);
     public void saveOrUpdate(Etablissement etablissement);

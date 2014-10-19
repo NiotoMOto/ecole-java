@@ -9,6 +9,7 @@ import com.levinas.ecole.model.Activite;
 import com.levinas.ecole.model.Inscription;
 import com.levinas.ecole.service.ActiviteService;
 import com.levinas.ecole.service.InscriptionService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +40,7 @@ public class InscriptionCtrl {
     ActiviteService activiteService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Inscription> listAll(
+    public HashMap listAll(
             @RequestParam(value = "byActivite", required = false) Integer idActivite
     ) 
     {

@@ -40,7 +40,7 @@ public class ActiviteServiceImpl implements ActiviteService{
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return activiteDao.findAll();
     }
     

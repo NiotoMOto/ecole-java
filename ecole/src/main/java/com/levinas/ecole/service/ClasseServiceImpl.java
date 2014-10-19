@@ -8,6 +8,7 @@ package com.levinas.ecole.service;
 
 import com.levinas.ecole.dao.ClasseDao;
 import com.levinas.ecole.model.Classe;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,7 @@ public class ClasseServiceImpl implements ClasseService{
     ClasseDao classeDao;
     
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return classeDao.findAll();
     }
 

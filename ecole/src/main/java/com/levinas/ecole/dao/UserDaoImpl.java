@@ -6,6 +6,7 @@
 package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.User;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -27,11 +28,17 @@ public class UserDaoImpl implements UserDao {
     SessionFactory sessionFactory;
     
     @Override
-    public List listAll() {
+    public HashMap listAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from User ");
-        List list = query.list();
-        return list ;
+        HashMap result = new HashMap();
+        Query query = session.getNamedQuery("TypeResponsable.findAll");
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
 
 

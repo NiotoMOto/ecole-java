@@ -9,6 +9,7 @@ package com.levinas.ecole.service;
 import com.levinas.ecole.dao.InscriptionDao;
 import com.levinas.ecole.model.Activite;
 import com.levinas.ecole.model.Inscription;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -38,12 +39,12 @@ public class InscriptionServiceImpl implements InscriptionService{
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return inscriptionDao.findAll();
     }
     
     @Override
-    public List findByActivite(Activite activite){
+    public HashMap findByActivite(Activite activite){
         return inscriptionDao.findByActivite(activite);
     }
     

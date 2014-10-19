@@ -19,10 +19,10 @@ import java.util.List;
 public interface AnneeScolaireEnfantService {
     
     public void save(AnneeScolaireEnfant anneeScolaireEnfant);
-    public List findAll();
+    public HashMap findAll();
     public void delete(AnneeScolaireEnfant anneeScolaireEnfant);
     public AnneeScolaireEnfant findByIdanneeScolaireEnfant (int idAnneeScolaireEnfant);
-    public List<AnneeScolaireEnfant> findByIdenfant (Enfant enfant);
+    public HashMap findByIdenfant (Enfant enfant);
     public List<AnneeScolaireEnfant> findByIdresponsable (Responsable responsable);
     
 }

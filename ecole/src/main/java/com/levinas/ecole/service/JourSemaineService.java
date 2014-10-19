@@ -20,7 +20,7 @@ public interface JourSemaineService {
     
     public void save(JourSemaine jourSemaine);
     public void update(JourSemaine jourSemaine);
-    public List findAll();
+    public HashMap findAll();
     public void delete(JourSemaine jourSemaine);
     public JourSemaine findByIdjourSemaine (int idJourSemaine);
 

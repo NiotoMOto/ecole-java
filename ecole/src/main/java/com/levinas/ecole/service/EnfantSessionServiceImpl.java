@@ -40,7 +40,7 @@ public class EnfantSessionServiceImpl implements EnfantSessionService{
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return enfantSessionDao.findAll();
     }
     

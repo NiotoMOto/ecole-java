@@ -10,6 +10,7 @@ import com.levinas.ecole.model.Activite;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.Inscription;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,8 +20,8 @@ import java.util.List;
 public interface InscriptionDao {
     public void save(Inscription inscription);
     public void update(Inscription inscription);
-    public List findAll();
-    public List findByActivite(Activite activite);
+    public HashMap findAll();
+    public HashMap findByActivite(Activite activite);
     public void delete(Inscription inscription);
     public Inscription findByIdinscription (int idInscription);
 }

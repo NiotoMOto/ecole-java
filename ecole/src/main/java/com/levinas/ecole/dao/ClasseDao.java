@@ -7,6 +7,7 @@
 package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Classe;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface ClasseDao {
 
-    public List findAll();
+    public HashMap findAll();
 
     public Classe findByIdclasse(int idClasse);
 

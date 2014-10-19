@@ -9,6 +9,7 @@ import com.levinas.ecole.model.Activite;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.Inscription;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -47,18 +48,31 @@ public class InscriptionDaoImpl implements InscriptionDao {
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         Session session = sessionFactory.getCurrentSession();
+        HashMap result = new HashMap();
         Query query = session.getNamedQuery("Inscription.findAll");
-        return query.list();
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
     
     @Override
-    public List findByActivite(Activite activite) {
+    public HashMap findByActivite(Activite activite) {
         Session session = sessionFactory.getCurrentSession();
+        HashMap result = new HashMap();
         Query query = session.createQuery("SELECT i FROM Inscription i WHERE i.idactivite = :activite");
-        query.setParameter("activite", activite);
-        return query.list();
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
 
 

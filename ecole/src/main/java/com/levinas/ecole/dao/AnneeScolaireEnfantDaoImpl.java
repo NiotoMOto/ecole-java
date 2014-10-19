@@ -8,6 +8,7 @@ package com.levinas.ecole.dao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.AnneeScolaireEnfant;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -40,18 +41,32 @@ public class AnneeScolaireEnfantDaoImpl implements AnneeScolaireEnfantDao {
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         Session session = sessionFactory.getCurrentSession();
+        HashMap result = new HashMap();
         Query query = session.getNamedQuery("AnneeScolaireEnfant.findAll");
-        return query.list();
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
 
     @Override
-    public List<AnneeScolaireEnfant> findByIdenfant(Enfant enfant) {
+    public HashMap findByIdenfant(Enfant enfant) {
         Session session = sessionFactory.getCurrentSession();
+        HashMap result = new HashMap();
         Query query = session.createQuery("SELECT r FROM AnneeScolaireEnfant r WHERE r.idenfant = :idenfant");
         query.setParameter("idenfant", enfant);
-        return query.list();
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
 
     @Override

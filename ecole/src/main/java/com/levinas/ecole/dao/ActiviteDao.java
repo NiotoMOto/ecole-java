@@ -9,6 +9,7 @@ package com.levinas.ecole.dao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.Activite;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 public interface ActiviteDao {
     public void save(Activite activite);
     public void update(Activite activite);
-    public List findAll();
+    public HashMap findAll();
     public void delete(Activite activite);
     public Activite findByIdactivite (int idActivite);
 }

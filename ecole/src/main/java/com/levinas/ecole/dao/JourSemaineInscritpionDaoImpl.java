@@ -7,6 +7,7 @@ package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Inscription;
 import com.levinas.ecole.model.JourSemaineInscritpion;
+import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -45,18 +46,31 @@ public class JourSemaineInscritpionDaoImpl implements JourSemaineInscritpionDao 
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.getNamedQuery("JourSemaineInscritpion.findAll");
-        return query.list();
+        HashMap result = new HashMap();
+        Query query = session.getNamedQuery("Inscription.findAll");
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
     
     @Override
-    public List findByInscription(Inscription inscription) {
+    public HashMap findByInscription(Inscription inscription) {
         Session session = sessionFactory.getCurrentSession();
+        HashMap result = new HashMap();
         Query query = session.createQuery("SELECT jsi FROM JourSemaineInscritpion jsi WHERE jsi.inscriptionIdinscription = :inscription");
-        query.setParameter("inscription", inscription);
-        return query.list();
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
     }
 
 

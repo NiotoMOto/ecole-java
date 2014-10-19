@@ -9,6 +9,7 @@ package com.levinas.ecole.dao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.AnneeScolaireEnfant;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,10 +18,10 @@ import java.util.List;
  */
 public interface AnneeScolaireEnfantDao {
     public void save(AnneeScolaireEnfant anneeScolaireEnfant);
-    public List findAll();
+    public HashMap findAll();
     public void delete(AnneeScolaireEnfant anneeScolaireEnfant);
     public AnneeScolaireEnfant findByIdanneeScolaireEnfant (int idAnneeScolaireEnfant);
-    public List<AnneeScolaireEnfant> findByIdenfant (Enfant enfant);
+    public HashMap findByIdenfant (Enfant enfant);
     public List<AnneeScolaireEnfant> findByIdresponsable (Responsable responsable);
     
     

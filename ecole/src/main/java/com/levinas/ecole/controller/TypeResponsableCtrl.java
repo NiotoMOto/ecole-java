@@ -7,6 +7,7 @@ package com.levinas.ecole.controller;
 
 import com.levinas.ecole.model.TypeResponsable;
 import com.levinas.ecole.service.TypeResponsableService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,7 @@ public class TypeResponsableCtrl {
     TypeResponsableService typeResponsableService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<TypeResponsable> listAll() {
+    public HashMap listAll() {
         return typeResponsableService.findAll();
     }
 

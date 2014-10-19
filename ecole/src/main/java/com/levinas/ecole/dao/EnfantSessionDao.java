@@ -9,6 +9,7 @@ package com.levinas.ecole.dao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.EnfantSession;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 public interface EnfantSessionDao {
     public void save(EnfantSession enfantSession);
     public void update(EnfantSession enfantSession);
-    public List findAll();
+    public HashMap findAll();
     public void delete(EnfantSession enfantSession);
     public EnfantSession findByIdenfantSession (int idEnfantSession);
 }

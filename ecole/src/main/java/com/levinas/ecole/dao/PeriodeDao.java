@@ -9,6 +9,7 @@ package com.levinas.ecole.dao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.Periode;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 public interface PeriodeDao {
     public void save(Periode periode);
     public void update(Periode periode);
-    public List findAll();
+    public HashMap findAll();
     public void delete(Periode periode);
     public Periode findByIdperiode (int idPeriode);
 }

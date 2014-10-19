@@ -41,11 +41,11 @@ public class JourSemaineInscritpionServiceImpl implements JourSemaineInscritpion
     }
 
     @Override
-    public List findAll() {
+    public HashMap findAll() {
         return jourSemaineInscritpionDao.findAll();
     }
     @Override
-    public List findByInscription(Inscription inscription){
+    public HashMap findByInscription(Inscription inscription){
         return jourSemaineInscritpionDao.findByInscription(inscription);
     }
     
