@@ -44,7 +44,7 @@ public class EnfantCtrl {
             @RequestParam(value = "rpp", required = false, defaultValue = "") Integer rpp,
             @RequestParam(value = "search", required = false, defaultValue = "") String search) {
             if(page == null || rpp == null ||search == null){
-                return enfantService.listAll(1, 1, "");
+                return enfantService.listAll();
             }else{
                 return enfantService.listAll(page, rpp, search);
             }

@@ -8,6 +8,7 @@ package com.levinas.ecole.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,6 +22,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -35,7 +39,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "Inscription.findAll", query = "SELECT i FROM Inscription i"),
     @NamedQuery(name = "Inscription.findByIdinscription", query = "SELECT i FROM Inscription i WHERE i.idinscription = :idinscription"),
-    @NamedQuery(name = "Inscription.findByPrix", query = "SELECT i FROM Inscription i WHERE i.prix = :prix")})
+    @NamedQuery(name = "Inscription.findByPrix", query = "SELECT i FROM Inscription i WHERE i.prix = :prix"),
+    @NamedQuery(name = "Inscription.findByDebut", query = "SELECT i FROM Inscription i WHERE i.debut = :debut"),
+    @NamedQuery(name = "Inscription.findByFin", query = "SELECT i FROM Inscription i WHERE i.fin = :fin"),
+    @NamedQuery(name = "Inscription.findByJour", query = "SELECT i FROM Inscription i WHERE i.jour = :jour")})
 public class Inscription implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,13 +53,17 @@ public class Inscription implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "prix")
     private Float prix;
+    @Column(name = "debut")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date debut;
+    @Column(name = "fin")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fin;
+    @Size(max = 45)
+    @Column(name = "jour")
+    private String jour;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idinscription")
     private Collection<EnfantSession> enfantSessionCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "inscriptionIdinscription")
-    private Collection<JourSemaineInscritpion> jourSemaineInscritpionCollection;
-    @JoinColumn(name = "periode_idperiode", referencedColumnName = "idperiode")
-    @ManyToOne(optional = false)
-    private Periode periodeIdperiode;
     @JoinColumn(name = "idactivite", referencedColumnName = "idactivite")
     @ManyToOne(optional = false)
     private Activite idactivite;
@@ -80,6 +91,30 @@ public class Inscription implements Serializable {
         this.prix = prix;
     }
 
+    public Date getDebut() {
+        return debut;
+    }
+
+    public void setDebut(Date debut) {
+        this.debut = debut;
+    }
+
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
+    }
+
+    public String getJour() {
+        return jour;
+    }
+
+    public void setJour(String jour) {
+        this.jour = jour;
+    }
+
     @XmlTransient
     @JsonIgnore
     public Collection<EnfantSession> getEnfantSessionCollection() {
@@ -88,24 +123,6 @@ public class Inscription implements Serializable {
 
     public void setEnfantSessionCollection(Collection<EnfantSession> enfantSessionCollection) {
         this.enfantSessionCollection = enfantSessionCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<JourSemaineInscritpion> getJourSemaineInscritpionCollection() {
-        return jourSemaineInscritpionCollection;
-    }
-
-    public void setJourSemaineInscritpionCollection(Collection<JourSemaineInscritpion> jourSemaineInscritpionCollection) {
-        this.jourSemaineInscritpionCollection = jourSemaineInscritpionCollection;
-    }
-
-    public Periode getPeriodeIdperiode() {
-        return periodeIdperiode;
-    }
-
-    public void setPeriodeIdperiode(Periode periodeIdperiode) {
-        this.periodeIdperiode = periodeIdperiode;
     }
 
     public Activite getIdactivite() {

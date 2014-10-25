@@ -47,6 +47,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Enfant.findByAdresse", query = "SELECT e FROM Enfant e WHERE e.adresse = :adresse"),
     @NamedQuery(name = "Enfant.findByVille", query = "SELECT e FROM Enfant e WHERE e.ville = :ville"),
     @NamedQuery(name = "Enfant.findByCodePostal", query = "SELECT e FROM Enfant e WHERE e.codePostal = :codePostal"),
+    @NamedQuery(name = "Enfant.findByDifficultes", query = "SELECT e FROM Enfant e WHERE e.difficultes = :difficultes"),
     @NamedQuery(name = "Enfant.findBySecuSociale", query = "SELECT e FROM Enfant e WHERE e.secuSociale = :secuSociale"),
     @NamedQuery(name = "Enfant.findByAssuranceScolaire", query = "SELECT e FROM Enfant e WHERE e.assuranceScolaire = :assuranceScolaire")})
 public class Enfant implements Serializable {
@@ -74,23 +75,22 @@ public class Enfant implements Serializable {
     @Size(max = 45)
     @Column(name = "code_postal")
     private String codePostal;
-    
-    @Size(max = 16777215)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "aptitudes")
     private String aptitudes;
-    
-    @Size(max = 16777215)
+    @Size(max = 255)
     @Column(name = "difficultes")
     private String difficultes;
-    
-    @Size(max = 16777215)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "commentaires")
     private String commentaires;
     @Column(name = "secu_sociale")
     private BigInteger secuSociale;
     @Column(name = "assurance_scolaire")
     private Boolean assuranceScolaire;
-    
+    @Lob
     @Size(max = 65535)
     @Column(name = "probleme_sante")
     private String problemeSante;

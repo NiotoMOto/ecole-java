@@ -33,20 +33,22 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Activite.findAll", query = "SELECT a FROM Activite a"),
-    @NamedQuery(name = "Activite.findByIdactivite", query = "SELECT a FROM Activite a WHERE a.idactivite = :idactivite")})
+    @NamedQuery(name = "Activite.findByIdactivite", query = "SELECT a FROM Activite a WHERE a.idactivite = :idactivite"),
+    @NamedQuery(name = "Activite.findByLibelle", query = "SELECT a FROM Activite a WHERE a.libelle = :libelle"),
+    @NamedQuery(name = "Activite.findByDescription", query = "SELECT a FROM Activite a WHERE a.description = :description")})
 public class Activite implements Serializable {
-    @Size(max = 45)
-    @Column(name = "libelle")
-    private String libelle;
-    @Size(max = 45)
-    @Column(name = "description")
-    private String description;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idactivite")
     private Integer idactivite;
+    @Size(max = 45)
+    @Column(name = "libelle")
+    private String libelle;
+    @Size(max = 45)
+    @Column(name = "description")
+    private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idactivite")
     private Collection<Inscription> inscriptionCollection;
 
@@ -63,6 +65,22 @@ public class Activite implements Serializable {
 
     public void setIdactivite(Integer idactivite) {
         this.idactivite = idactivite;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @XmlTransient
@@ -98,22 +116,6 @@ public class Activite implements Serializable {
     @Override
     public String toString() {
         return "com.levinas.ecole.model.Activite[ idactivite=" + idactivite + " ]";
-    }
-
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
     
 }
