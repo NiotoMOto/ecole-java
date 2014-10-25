@@ -50,7 +50,7 @@ public class JourSemaineDaoImpl implements JourSemaineDao {
     public HashMap findAll() {
         Session session = sessionFactory.getCurrentSession();
         HashMap result = new HashMap();
-        Query query = session.getNamedQuery("Inscription.findAll");
+        Query query = session.getNamedQuery("JourSemaine.findAll");
         double nbResult = query.list().size();
         List listItems = query.list();
         

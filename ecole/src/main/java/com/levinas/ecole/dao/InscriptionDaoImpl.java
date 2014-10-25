@@ -66,6 +66,7 @@ public class InscriptionDaoImpl implements InscriptionDao {
         Session session = sessionFactory.getCurrentSession();
         HashMap result = new HashMap();
         Query query = session.createQuery("SELECT i FROM Inscription i WHERE i.idactivite = :activite");
+        query.setParameter("activite", activite);
         double nbResult = query.list().size();
         List listItems = query.list();
         

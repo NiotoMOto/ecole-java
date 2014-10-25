@@ -64,6 +64,7 @@ public class JourSemaineInscritpionDaoImpl implements JourSemaineInscritpionDao 
         Session session = sessionFactory.getCurrentSession();
         HashMap result = new HashMap();
         Query query = session.createQuery("SELECT jsi FROM JourSemaineInscritpion jsi WHERE jsi.inscriptionIdinscription = :inscription");
+        query.setParameter("inscription", inscription);
         double nbResult = query.list().size();
         List listItems = query.list();
         
