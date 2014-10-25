@@ -10,6 +10,7 @@ import com.levinas.ecole.dao.EnfantSessionDao;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.EnfantSession;
+import com.levinas.ecole.model.Inscription;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,16 @@ public class EnfantSessionServiceImpl implements EnfantSessionService{
         return enfantSessionDao.findAll();
     }
     
- 
+    @Override
+    public HashMap findByInscription(Inscription inscription){
+        return findByInscription(inscription);
+    }
+    
+    @Override
+    public HashMap findByEnfant(Enfant enfant){
+        return findByEnfant(enfant);
+    }
+    
     @Override
     public void delete(EnfantSession enfantSession) {
         enfantSessionDao.delete(enfantSession);

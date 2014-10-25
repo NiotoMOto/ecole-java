@@ -9,6 +9,7 @@ package com.levinas.ecole.service;
 import com.levinas.ecole.model.Enfant;
 import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.EnfantSession;
+import com.levinas.ecole.model.Inscription;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public interface EnfantSessionService {
     public void save(EnfantSession enfantSession);
     public void update(EnfantSession enfantSession);
     public HashMap findAll();
+    public HashMap findByInscription(Inscription inscription);
+    public HashMap findByEnfant(Enfant enfant);
     public void delete(EnfantSession enfantSession);
     public EnfantSession findByIdenfantSession (int idEnfantSession);
 

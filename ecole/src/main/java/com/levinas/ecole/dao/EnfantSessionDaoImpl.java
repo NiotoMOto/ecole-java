@@ -6,8 +6,8 @@
 package com.levinas.ecole.dao;
 
 import com.levinas.ecole.model.Enfant;
-import com.levinas.ecole.model.Responsable;
 import com.levinas.ecole.model.EnfantSession;
+import com.levinas.ecole.model.Inscription;
 import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
@@ -51,6 +51,36 @@ public class EnfantSessionDaoImpl implements EnfantSessionDao {
         Session session = sessionFactory.getCurrentSession();
         HashMap result = new HashMap();
         Query query = session.getNamedQuery("EnfantSession.findAll");
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
+    }
+    
+    @Override
+    public HashMap findByInscription(Inscription inscription) {
+        Session session = sessionFactory.getCurrentSession();
+        HashMap result = new HashMap();
+        Query query = session.createQuery("SELECT es FROM EnfantSession es WHERE es.idinscription = :inscription");
+        query.setParameter("inscription", inscription);
+        double nbResult = query.list().size();
+        List listItems = query.list();
+        
+        result.put("items", listItems);
+        //result.put("page_count", Math.ceil(nbResult/iRpp.doubleValue()));
+        result.put("total_items",nbResult);
+        return result;
+    }
+    
+    @Override
+    public HashMap findByEnfant(Enfant enfant) {
+        Session session = sessionFactory.getCurrentSession();
+        HashMap result = new HashMap();
+        Query query = session.createQuery("SELECT es FROM EnfantSession es WHERE es.idenfant = :enfant");
+        query.setParameter("enfant", enfant);
         double nbResult = query.list().size();
         List listItems = query.list();
         
