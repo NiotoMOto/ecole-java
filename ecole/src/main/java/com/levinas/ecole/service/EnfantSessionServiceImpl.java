@@ -47,12 +47,12 @@ public class EnfantSessionServiceImpl implements EnfantSessionService{
     
     @Override
     public HashMap findByInscription(Inscription inscription){
-        return findByInscription(inscription);
+        return enfantSessionDao.findByInscription(inscription);
     }
     
     @Override
     public HashMap findByEnfant(Enfant enfant){
-        return findByEnfant(enfant);
+        return enfantSessionDao.findByEnfant(enfant);
     }
     
     @Override
